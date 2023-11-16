@@ -21,11 +21,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 @Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun loginScreen(){
+    val navController: NavHostController = rememberNavController()
+
     var userText by rememberSaveable {
         mutableStateOf("")
     }
@@ -53,6 +57,9 @@ fun loginScreen(){
         if(attemptedLogin){
             LoginDialog(accepted = accepted) { attemptedLogin = false  }
 
+        }
+        if(accepted){
+            navController.navigate("userHome")
         }
 
 

@@ -1,66 +1,66 @@
 [
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/drawable_ic_launcher_background.xml.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/drawable/ic_launcher_background.xml"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/xml_data_extraction_rules.xml.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/drawable_ic_launcher_background.xml.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/xml_backup_rules.xml.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/xml/backup_rules.xml"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/drawable/ic_launcher_foreground.xml"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/xml_backup_rules.xml.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/xml/backup_rules.xml"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "ar.edu.itba.example.api.app-merged_res-45:/xml_data_extraction_rules.xml.flat",
-        "source": "ar.edu.itba.example.api.app-main-47:/xml/data_extraction_rules.xml"
+        "merged": "ar.edu.itba.example.api.app-merged_res-50:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "ar.edu.itba.example.api.app-main-52:/mipmap-xxxhdpi/ic_launcher.webp"
     }
 ]

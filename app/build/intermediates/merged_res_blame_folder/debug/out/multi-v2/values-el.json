@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "ar.edu.itba.example.api.app-mergeDebugResources-43:/values-el/values-el.xml",
+            "outputFile": "ar.edu.itba.example.api.app-mergeDebugResources-48:/values-el/values-el.xml",
             "map": [
                 {
                     "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\e060ddb424a06ecfb8e75da3d70f4c48\\transformed\\core-1.12.0\\res\\values-el\\values-el.xml",
@@ -21,23 +21,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\5d58eaa02c0b125c90f1060618df2b57\\transformed\\ui-1.4.0\\res\\values-el\\values-el.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,204,290,391,496,588,669,763,852,942,1012,1080,1161,1243,1318,1397,1467",
-                        "endColumns": "98,85,100,104,91,80,93,88,89,69,67,80,81,74,78,69,122",
-                        "endOffsets": "199,285,386,491,583,664,758,847,937,1007,1075,1156,1238,1313,1392,1462,1585"
-                    },
-                    "to": {
-                        "startLines": "9,10,12,13,15,17,18,19,20,21,22,23,24,25,27,28,29",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "840,939,1105,1206,1394,1565,1646,1740,1829,1919,1989,2057,2138,2220,2396,2475,2545",
-                        "endColumns": "98,85,100,104,91,80,93,88,89,69,67,80,81,74,78,69,122",
-                        "endOffsets": "934,1020,1201,1306,1481,1641,1735,1824,1914,1984,2052,2133,2215,2290,2470,2540,2663"
-                    }
-                },
-                {
                     "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\95307028250a3d1c2707ec3c5d80d07c\\transformed\\material3-1.0.0\\res\\values-el\\values-el.xml",
                     "from": {
                         "startLines": "2,3,4",
@@ -52,6 +35,23 @@
                         "startOffsets": "1025,1311,1486",
                         "endColumns": "79,82,78",
                         "endOffsets": "1100,1389,1560"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\ee64e97561dea54bff65e93822e94c1c\\transformed\\ui-release\\res\\values-el\\values-el.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,204,290,391,496,588,669,763,852,942,1012,1080,1161,1243,1318,1397,1467",
+                        "endColumns": "98,85,100,104,91,80,93,88,89,69,67,80,81,74,78,69,122",
+                        "endOffsets": "199,285,386,491,583,664,758,847,937,1007,1075,1156,1238,1313,1392,1462,1585"
+                    },
+                    "to": {
+                        "startLines": "9,10,12,13,15,17,18,19,20,21,22,23,24,25,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "840,939,1105,1206,1394,1565,1646,1740,1829,1919,1989,2057,2138,2220,2396,2475,2545",
+                        "endColumns": "98,85,100,104,91,80,93,88,89,69,67,80,81,74,78,69,122",
+                        "endOffsets": "934,1020,1201,1306,1481,1641,1735,1824,1914,1984,2052,2133,2215,2290,2470,2540,2663"
                     }
                 }
             ]

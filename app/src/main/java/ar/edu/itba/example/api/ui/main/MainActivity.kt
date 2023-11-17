@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import ar.edu.itba.example.api.R
 import ar.edu.itba.example.api.data.model.Sport
 import ar.edu.itba.example.api.ui.theme.ApiTheme
+import ar.edu.itba.example.api.util.MyNavHost
 import ar.edu.itba.example.api.util.getViewModelFactory
 import kotlin.random.Random
 
@@ -32,7 +33,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    //MainScreen()
+                    val navController: NavHostController = rememberNavController()
+                    MyNavHost(navController)
                 }
             }
         }
@@ -76,6 +79,7 @@ fun MainScreen(
                 resId = R.string.login,
                 onClick = {
                     viewModel.login("johndoe", "1234567890")
+                    navController.navigate("test")
                 })
         } else {
             ActionButton(

@@ -8,4 +8,9 @@
     <string name="add_sport">ADD SPORT</string>
     <string name="modify_sport">MODIFY SPORT</string>
     <string name="delete_sport">DELETE SPORT</string>
+    <string name="login_success">Login Successful</string>
+    <string name="login_fail">Login Failed</string>
+    <string name="redirecting">Redirecting…</string>
+    <string name="retry">Please try again.</string>
+    <string name="OKButton">OK</string>
 </resources>

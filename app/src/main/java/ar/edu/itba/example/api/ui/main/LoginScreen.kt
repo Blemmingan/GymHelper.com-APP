@@ -1,5 +1,6 @@
 package ar.edu.itba.example.api.ui.main
 
+import android.provider.Settings.Global.getString
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,17 +19,25 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import ar.edu.itba.example.api.R
+import ar.edu.itba.example.api.util.getViewModelFactory
 
-@Preview
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun loginScreen(){
-    val navController: NavHostController = rememberNavController()
+fun loginScreen(
+    navController: NavHostController,
+    viewModel: MainViewModel = viewModel(factory = getViewModelFactory())
+){
 
     var userText by rememberSaveable {
         mutableStateOf("")
@@ -42,6 +51,7 @@ fun loginScreen(){
     var attemptedLogin by rememberSaveable {
         mutableStateOf(false)
     }
+    val uiState = viewModel.uiState
 
     Column (horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -51,25 +61,21 @@ fun loginScreen(){
             label = { Text(text = "Username")}, singleLine = true, modifier = Modifier.padding(5.dp))
         TextField(value = passwordText, onValueChange = {passwordText = it},
             label = { Text(text = "Password")}, singleLine = true , modifier = Modifier.padding(5.dp) )
-        ElevatedButton(onClick = { accepted = attemptLogin2(userText, passwordText); attemptedLogin = true}) {
+        ElevatedButton(onClick = { viewModel.login(userText, passwordText); attemptedLogin = true}) {
             Text(text = "LOGIN")
         }
         if(attemptedLogin){
-            LoginDialog(accepted = accepted) { attemptedLogin = false  }
-
+            LoginDialog(uiState.isAuthenticated) { attemptedLogin = false  }
         }
-        if(accepted){
-            navController.navigate("userHome")
+        if(uiState.isAuthenticated){
+            navController.navigate("test")
         }
 
 
     }
 }
 
-fun attemptLogin2(username: String, password:String) :Boolean{
-    // Aca se hacen las validaciones
-    return username!= "a" && password != "a"
-}
+
 
 @ExperimentalMaterial3Api
 @Composable
@@ -86,19 +92,20 @@ fun LoginDialog(accepted:Boolean, updateAttempt: (attempted: Boolean) -> Unit) {
             },
             title = {
                 if(accepted){
-                    Text(text = "Login Successful")
+                    Text(text = stringResource(id = R.string.login_success))
+                    
                 }
                 else{
-                    Text(text = "Login Failed")
+                    Text(text = stringResource(id = R.string.login_fail))
                 }
 
             },
             text = {
                 if(accepted){
-                    Text(text = "Redirecting...")
+                    Text(text = stringResource(id = R.string.redirecting))
                 }
                 else{
-                    Text(text = "Please try again")
+                    Text(text = stringResource(id = R.string.retry))
                 }
 
             },
@@ -108,9 +115,10 @@ fun LoginDialog(accepted:Boolean, updateAttempt: (attempted: Boolean) -> Unit) {
                     TextButton(
                         onClick = {
                             openDialogue.value = false
+                            updateAttempt(false)
                         }
                     ) {
-                        Text("Retry")
+                        Text(text = stringResource(id = R.string.OKButton))
                     }
                 }
             },

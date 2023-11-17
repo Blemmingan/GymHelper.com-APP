@@ -11,6 +11,7 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 mipmap ic_launcher
 mipmap ic_launcher_round
+string OKButton
 string add_sport
 string app_name
 string delete_sport
@@ -18,8 +19,12 @@ string get_all_sports
 string get_current_sport
 string get_current_user
 string login
+string login_fail
+string login_success
 string logout
 string modify_sport
+string redirecting
+string retry
 style Theme.Api
 xml backup_rules
 xml data_extraction_rules

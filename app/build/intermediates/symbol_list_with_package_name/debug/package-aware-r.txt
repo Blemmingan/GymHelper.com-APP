@@ -196,6 +196,7 @@ layout notification_template_part_chronometer
 layout notification_template_part_time
 mipmap ic_launcher
 mipmap ic_launcher_round
+string OKButton
 string add_sport
 string androidx_startup
 string app_name
@@ -221,6 +222,8 @@ string get_current_user
 string in_progress
 string indeterminate
 string login
+string login_fail
+string login_success
 string logout
 string modify_sport
 string navigation_menu
@@ -229,6 +232,8 @@ string off
 string on
 string range_end
 string range_start
+string redirecting
+string retry
 string selected
 string status_bar_notification_info_overflow
 string switch_role

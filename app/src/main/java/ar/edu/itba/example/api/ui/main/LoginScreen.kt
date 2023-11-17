@@ -68,9 +68,11 @@ fun loginScreen(
             LoginDialog(uiState.isAuthenticated) { attemptedLogin = false  }
         }
         if(uiState.isAuthenticated){
-            navController.navigate("test")
+            navController.navigate("home")
         }
-
+        ElevatedButton(onClick = { navController.navigate("home") }) {
+            Text(text = "DEBUG: GO HOME")
+        }
 
     }
 }

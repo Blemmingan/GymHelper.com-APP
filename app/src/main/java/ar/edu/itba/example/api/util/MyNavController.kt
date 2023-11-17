@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import ar.edu.itba.example.api.ui.main.homeScreen
 import ar.edu.itba.example.api.ui.main.loginScreen
 import ar.edu.itba.example.api.ui.main.test
 
@@ -21,6 +22,9 @@ fun MyNavHost(navController: NavHostController = rememberNavController(), startD
         }
         composable("test"){
             test()
+        }
+        composable("home"){
+            homeScreen(navController = navController)
         }
     }
 }

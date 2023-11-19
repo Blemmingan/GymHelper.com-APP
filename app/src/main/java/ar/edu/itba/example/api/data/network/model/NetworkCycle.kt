@@ -1,8 +1,9 @@
 package ar.edu.itba.example.api.data.network.model
 
+import ar.edu.itba.example.api.data.model.Cycle
 import com.google.gson.annotations.SerializedName
 
-data class NetworkCycle(
+class NetworkCycle(
     @SerializedName("id")
     var id: Int?,
     @SerializedName("name")
@@ -15,4 +16,15 @@ data class NetworkCycle(
     var order: Int?,
     @SerializedName("repetitions")
     var repetitions: Int?,
-)
+) {
+    fun asModel(): Cycle {
+        return Cycle(
+            id = id,
+            name = name,
+            detail = detail,
+            type = type,
+            order = order,
+            repetitions = repetitions
+        )
+    }
+}

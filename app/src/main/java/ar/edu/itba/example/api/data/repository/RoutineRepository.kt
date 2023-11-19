@@ -1,5 +1,6 @@
 package ar.edu.itba.example.api.data.repository
 
+import ar.edu.itba.example.api.data.model.Cycle
 import ar.edu.itba.example.api.data.model.Routine
 import ar.edu.itba.example.api.data.network.RemoteDataSource
 import ar.edu.itba.example.api.data.network.RoutineRemoteDataSource

@@ -33,8 +33,8 @@ class NetworkRoutine(
             score = score,
             isPublic = isPublic,
             difficulty = difficulty,
-            category = category,
-            user = user
+            category = category?.asModel(),
+            user = user?.asModel()
         )
     }
 }

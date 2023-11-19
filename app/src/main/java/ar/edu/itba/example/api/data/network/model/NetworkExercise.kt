@@ -1,9 +1,10 @@
 package ar.edu.itba.example.api.data.network.model
 
+import ar.edu.itba.example.api.data.model.Exercise
 import com.google.gson.annotations.SerializedName
 import java.util.Date
 
-data class NetworkExercise(
+class NetworkExercise(
     @SerializedName("id")
     var id: Int?,
     @SerializedName("name")
@@ -16,4 +17,15 @@ data class NetworkExercise(
     var duration: Int?,
     @SerializedName("date")
     var date: Date?
-)
+) {
+    fun asModel(): Exercise {
+        return Exercise(
+            id = id,
+            name = name,
+            detail = detail,
+            type = type,
+            duration = duration,
+            date = date,
+        )
+    }
+}

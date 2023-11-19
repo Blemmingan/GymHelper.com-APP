@@ -10,3 +10,4 @@ data class User(
     var email: String,
     var lastActivity: Date? = null
 )
+

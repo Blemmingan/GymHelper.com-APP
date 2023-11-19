@@ -82,7 +82,7 @@ fun loginScreen(
 @ExperimentalMaterial3Api
 @Composable
 fun LoginDialog(accepted:Boolean, updateAttempt: (attempted: Boolean) -> Unit) {
-    var openDialogue = remember { mutableStateOf(true)}
+    val openDialogue = remember { mutableStateOf(true)}
     if(openDialogue.value){
         AlertDialog(
             onDismissRequest = {

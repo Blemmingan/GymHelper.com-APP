@@ -219,8 +219,10 @@ string expanded
 string get_all_sports
 string get_current_sport
 string get_current_user
+string gymhelp
 string in_progress
 string indeterminate
+string local_desc
 string login
 string login_fail
 string login_success

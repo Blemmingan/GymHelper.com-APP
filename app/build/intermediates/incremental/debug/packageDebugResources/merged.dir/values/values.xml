@@ -14,6 +14,8 @@
     <string name="get_all_sports">GET ALL SPORTS</string>
     <string name="get_current_sport">GET CURRENT SPORT</string>
     <string name="get_current_user">GET CURRENT USER</string>
+    <string name="gymhelp">GymHelper</string>
+    <string name="local_desc">Boton de menu</string>
     <string name="login">LOGIN</string>
     <string name="login_fail">Login Failed</string>
     <string name="login_success">Login Successful</string>

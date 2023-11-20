@@ -1,21 +1,34 @@
 package ar.edu.itba.example.api.ui.main
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -37,11 +50,14 @@ import androidx.navigation.NavHostController
 import ar.edu.itba.example.api.R
 import ar.edu.itba.example.api.util.getViewModelFactory
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun homeScreen(navController: NavHostController,
                viewModel: MainViewModel = viewModel(factory = getViewModelFactory())
 ){
+
     ScaffoldExample()
 }
 
@@ -49,6 +65,8 @@ fun homeScreen(navController: NavHostController,
 @Composable
 fun ScaffoldExample() {
     var presses by remember { mutableIntStateOf(0) }
+    val list : List<Int> = listOf(1,2,3,4,5,6,7,8)
+    val state = rememberScrollState()
 
     Scaffold(
         topBar = {
@@ -93,26 +111,47 @@ fun ScaffoldExample() {
         floatingActionButton = {
             FloatingActionButton(onClick = { presses++ }) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
-
             }
         }
     ) { innerPadding ->
         Column(
             modifier = Modifier
-                .padding(innerPadding),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+                .padding(innerPadding)
+                .fillMaxWidth().verticalScroll(state),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+            ,
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
-                text =
-                """
-                    This is an example of a scaffold. It uses the Scaffold composable's parameters to create a screen with a simple top app bar, bottom app bar, and floating action button.
-
-                    It also contains some basic inner content, such as this text.
-
-                    You have pressed the floating action button $presses times.
-                """.trimIndent(),
+                text = stringResource(id = R.string.your_routines),
             )
+            for (elem in list){
+                OutlinedCard(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surface
+                    ),
+                    border = BorderStroke(1.dp, Color.Black),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp),
+                ) {
+                    Row (verticalAlignment = Alignment.CenterVertically){
+                        Text(
+                            text = elem.toString(),
+                            modifier = Modifier
+                                .padding(16.dp),
+                            textAlign = TextAlign.Center,
+                        )
+                        Spacer(Modifier.weight(1f))
+                        IconButton(onClick = { /* doSomething() */ }) {
+                            Icon(Icons.Outlined.PlayArrow, contentDescription = "Play Routine")
+                        }
+                    }
+
+                }
+
+
+            }
         }
     }
 }

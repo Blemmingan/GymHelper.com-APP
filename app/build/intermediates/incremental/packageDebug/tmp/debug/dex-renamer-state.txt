@@ -1,19 +1,19 @@
-#Sat Nov 18 18:41:01 ART 2023
-base.0=/home/cnt/AndroidStudioProjects/GymHelper.com-APP/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/home/cnt/AndroidStudioProjects/GymHelper.com-APP/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.2=/home/cnt/AndroidStudioProjects/GymHelper.com-APP/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
-base.3=/home/cnt/AndroidStudioProjects/GymHelper.com-APP/app/build/intermediates/dex/debug/mergeProjectDexDebug/10/classes.dex
-base.4=/home/cnt/AndroidStudioProjects/GymHelper.com-APP/app/build/intermediates/dex/debug/mergeProjectDexDebug/12/classes.dex
-base.5=/home/cnt/AndroidStudioProjects/GymHelper.com-APP/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
-base.6=/home/cnt/AndroidStudioProjects/GymHelper.com-APP/app/build/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex
-base.7=/home/cnt/AndroidStudioProjects/GymHelper.com-APP/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
-base.8=/home/cnt/AndroidStudioProjects/GymHelper.com-APP/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+#Mon Nov 20 15:41:21 ART 2023
+base.0=C\:\\Users\\joaqu\\Downloads\\TP - Ejemplo de Acceso al API con Retrofit\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\joaqu\\Downloads\\TP - Ejemplo de Acceso al API con Retrofit\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\joaqu\\Downloads\\TP - Ejemplo de Acceso al API con Retrofit\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
+base.3=C\:\\Users\\joaqu\\Downloads\\TP - Ejemplo de Acceso al API con Retrofit\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+base.4=C\:\\Users\\joaqu\\Downloads\\TP - Ejemplo de Acceso al API con Retrofit\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
+base.5=C\:\\Users\\joaqu\\Downloads\\TP - Ejemplo de Acceso al API con Retrofit\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.6=C\:\\Users\\joaqu\\Downloads\\TP - Ejemplo de Acceso al API con Retrofit\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
+base.7=C\:\\Users\\joaqu\\Downloads\\TP - Ejemplo de Acceso al API con Retrofit\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
+base.8=C\:\\Users\\joaqu\\Downloads\\TP - Ejemplo de Acceso al API con Retrofit\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
-path.2=1/classes.dex
-path.3=10/classes.dex
-path.4=12/classes.dex
-path.5=14/classes.dex
+path.2=10/classes.dex
+path.3=12/classes.dex
+path.4=14/classes.dex
+path.5=1/classes.dex
 path.6=3/classes.dex
 path.7=8/classes.dex
 path.8=classes2.dex

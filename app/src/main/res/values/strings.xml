@@ -14,5 +14,6 @@
     <string name="retry">Please try again.</string>
     <string name="OKButton">OK</string>
     <string name="gymhelp">GymHelper</string>
-    <string name="local_desc">Boton de menu</string>
+    <string name="local_desc">Menu Button</string>
+    <string name="your_routines">Your Routines</string>
 </resources>

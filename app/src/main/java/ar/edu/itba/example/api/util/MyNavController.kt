@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
+import ar.edu.itba.example.api.ui.main.RoutineScreen
 //import ar.edu.itba.example.api.ui.main.RoutineDetail
 import ar.edu.itba.example.api.ui.main.homeScreen
 import ar.edu.itba.example.api.ui.main.loginScreen
@@ -38,13 +39,13 @@ fun MyNavHost(
             homeScreen(navController = navController)
         }
 
-    /*    composable(
+        composable(
             "routine/{id}",
             arguments = listOf(navArgument("id") {type = NavType.IntType}),
             deepLinks = listOf(navDeepLink{uriPattern = "$uri/routine?id={id}"}, navDeepLink {uriPattern = "$secureUri/routine?id={id}"})
             ) {
-                route -> RoutineDetail(route.arguments?.getInt("id"))
-        }*/
+                route -> RoutineScreen(routineId = route.arguments?.getInt("id")!!)
+        }
     }
 }
 

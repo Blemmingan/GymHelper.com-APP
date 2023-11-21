@@ -1,8 +1,8 @@
 package ar.edu.itba.example.api.data.repository
 
 import ar.edu.itba.example.api.data.model.Cycle
+import ar.edu.itba.example.api.data.model.CycleExercise
 import ar.edu.itba.example.api.data.model.Routine
-import ar.edu.itba.example.api.data.network.RemoteDataSource
 import ar.edu.itba.example.api.data.network.RoutineRemoteDataSource
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -49,5 +49,13 @@ class RoutineRepository (
         routinesMutex.withLock {
             this.routines = emptyList()
         }
+    }
+
+    suspend fun getCycles(routineId: Int): List<Cycle> {
+        return remoteDataSource.getCycles(routineId).content.map { it.asModel() }
+    }
+
+    suspend fun getCycleExercises(cycleId: Int): List<CycleExercise> {
+        return remoteDataSource.getCycleExercises(cycleId).content.map {it.asModel()}
     }
 }

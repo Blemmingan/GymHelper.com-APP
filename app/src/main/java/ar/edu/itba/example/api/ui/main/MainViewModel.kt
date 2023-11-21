@@ -6,8 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ar.edu.itba.example.api.data.DataSourceException
+import ar.edu.itba.example.api.data.model.CycleExercise
 import ar.edu.itba.example.api.data.model.Error
+import ar.edu.itba.example.api.data.model.Exercise
 import ar.edu.itba.example.api.data.model.Sport
+import ar.edu.itba.example.api.data.repository.RoutineRepository
 import ar.edu.itba.example.api.data.repository.SportRepository
 import ar.edu.itba.example.api.data.repository.UserRepository
 import ar.edu.itba.example.api.util.SessionManager
@@ -17,7 +20,8 @@ import kotlinx.coroutines.launch
 class MainViewModel(
     sessionManager: SessionManager,
     private val userRepository: UserRepository,
-    private val sportRepository: SportRepository
+    private val sportRepository: SportRepository,
+    private val routineRepository: RoutineRepository,
 ) : ViewModel() {
 
     var uiState by mutableStateOf(MainUiState(isAuthenticated = sessionManager.loadAuthToken() != null))
@@ -45,41 +49,6 @@ class MainViewModel(
         { state, response -> state.copy(currentUser = response) }
     )
 
-    fun getSports() = runOnViewModelScope(
-        { sportRepository.getSports(true) },
-        { state, response -> state.copy(sports = response) }
-    )
-
-    fun getSport(sportId: Int) = runOnViewModelScope(
-        { sportRepository.getSport(sportId) },
-        { state, response -> state.copy(currentSport = response) }
-    )
-
-    fun addOrModifySport(sport: Sport) = runOnViewModelScope(
-        {
-            if (sport.id == null)
-                sportRepository.addSport(sport)
-            else
-                sportRepository.modifySport(sport)
-        },
-        { state, response ->
-            state.copy(
-                currentSport = response,
-                sports = null
-            )
-        }
-    )
-
-    fun deleteSport(sportId: Int) = runOnViewModelScope(
-        { sportRepository.deleteSport(sportId) },
-        { state, response ->
-            state.copy(
-                currentSport = null,
-                sports = null
-            )
-        }
-    )
-
     private fun <R> runOnViewModelScope(
         block: suspend () -> R,
         updateState: (MainUiState, R) -> MainUiState
@@ -101,4 +70,25 @@ class MainViewModel(
             Error(null, e.message ?: "", null)
         }
     }
+
+    fun getRoutine(routineId: Int) = runOnViewModelScope(
+        {routineRepository.getRoutine(routineId)},
+        {state, response -> state.copy(currentRoutine = response)}
+    )
+
+    fun getCycles(routineId: Int) = runOnViewModelScope(
+        {getCyclesAux(routineId) },
+        {state, response -> state.copy(currentRoutineDetails = response) }
+    )
+
+    private suspend fun getCyclesAux(routineId: Int): List<CycleWithExercises> {
+        val cycles = routineRepository.getCycles(routineId)
+        val newList: MutableList<CycleWithExercises> = mutableListOf()
+        for (cycle in cycles) {
+            val exercises: List<CycleExercise> = routineRepository.getCycleExercises(cycle.id!!)
+            newList.add(CycleWithExercises(cycle = cycle, exercises = exercises))
+        }
+        return newList
+    }
 }
+

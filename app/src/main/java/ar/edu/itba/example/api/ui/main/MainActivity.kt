@@ -95,7 +95,7 @@ fun MainScreen(
             onClick = {
                 viewModel.getCurrentUser()
             })
-        ActionButton(
+        /*ActionButton(
             resId = R.string.get_all_sports,
             enabled = uiState.canGetAllSports,
             onClick = {
@@ -131,7 +131,7 @@ fun MainScreen(
             onClick = {
                 val currentSport = uiState.currentSport!!
                 viewModel.deleteSport(currentSport.id!!)
-            })
+            })*/
         Column(
             modifier = Modifier.fillMaxSize()
         ) {

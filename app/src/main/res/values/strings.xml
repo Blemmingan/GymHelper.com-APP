@@ -16,4 +16,8 @@
     <string name="gymhelp">GymHelper</string>
     <string name="local_desc">Menu Button</string>
     <string name="your_routines">Your Routines</string>
+
+    <string name="repetitions">Repetitions: %1$d</string>
+    <string name="noExercises">This cycle has no exercises</string>
+    <string name="duration">Duration: %1$d</string>
 </resources>

@@ -123,6 +123,7 @@
     <string name="delete_sport">DELETE SPORT</string>
     <string name="dialog">"Dialog"</string>
     <string name="dropdown_menu">"Dropdown menu"</string>
+    <string name="duration">Duration: %1$d</string>
     <string name="expanded">Expanded</string>
     <string name="get_all_sports">GET ALL SPORTS</string>
     <string name="get_current_sport">GET CURRENT SPORT</string>
@@ -130,25 +131,28 @@
     <string name="gymhelp">GymHelper</string>
     <string name="in_progress">In progress</string>
     <string name="indeterminate">Partially checked</string>
-    <string name="local_desc">Boton de menu</string>
+    <string name="local_desc">Menu Button</string>
     <string name="login">LOGIN</string>
     <string name="login_fail">Login Failed</string>
     <string name="login_success">Login Successful</string>
     <string name="logout">LOGOUT</string>
     <string name="modify_sport">MODIFY SPORT</string>
     <string name="navigation_menu">"Navigation menu"</string>
+    <string name="noExercises">This cycle has no exercises</string>
     <string name="not_selected">Not selected</string>
     <string name="off">Off</string>
     <string name="on">On</string>
     <string name="range_end">"Range end"</string>
     <string name="range_start">"Range start"</string>
     <string name="redirecting">Redirecting…</string>
+    <string name="repetitions">Repetitions: %1$d</string>
     <string name="retry">Please try again.</string>
     <string name="selected">Selected</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="switch_role">Switch</string>
     <string name="tab">Tab</string>
     <string name="template_percent"><ns2:g id="percentage">%1$d</ns2:g> percent.</string>
+    <string name="your_routines">Your Routines</string>
     <style name="DialogWindowTheme">
         <item name="android:windowClipToOutline">false</item>
     </style>

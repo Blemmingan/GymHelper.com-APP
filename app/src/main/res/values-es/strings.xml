@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Api</string>
+    <string name="login">Ingresar</string>
+    <string name="logout">Salir</string>
+    <string name="get_current_user">Tomar Usuario Actual</string>
+    <string name="get_all_sports">Tomar Todos los Deportes</string>
+    <string name="get_current_sport">Tomar Deporte Actual</string>
+    <string name="add_sport">Nuevo Deporte</string>
+    <string name="modify_sport">Modificar Deporte</string>
+    <string name="delete_sport">Eliminar Deporte</string>
+    <string name="login_success">Ingreso Exitoso</string>
+    <string name="login_fail">Ingreso Fallido</string>
+    <string name="redirecting">Redireccionando…</string>
+    <string name="retry">Por favor inténtelo de nuevo</string>
+    <string name="OKButton">OK</string>
+    <string name="gymhelp">GymHelper</string>
+    <string name="local_desc">Botón de Menú</string>
+    <string name="your_routines">Tus Rutinas</string>
+
+    <string name="repetitions">Repeticiones: %1$d</string>
+    <string name="noExercises">El ciclo no tiene ejercicios</string>
+    <string name="duration">Duración: %1$d</string>
+    <string name="no_routines">No tienes ninguna rutina.</string>
+</resources>

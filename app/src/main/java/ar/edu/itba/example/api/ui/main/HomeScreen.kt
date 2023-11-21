@@ -52,20 +52,29 @@ import ar.edu.itba.example.api.util.getViewModelFactory
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import ar.edu.itba.example.api.data.model.Routine
+import kotlinx.coroutines.launch
 
 @Composable
 fun homeScreen(navController: NavHostController,
                viewModel: MainViewModel = viewModel(factory = getViewModelFactory())
 ){
+    var routinesList : List<Routine>? = null
+    val composableScope = rememberCoroutineScope()
+    LaunchedEffect(key1 = routinesList, block = {composableScope.launch { routinesList = viewModel.getRoutines() }})
 
-    ScaffoldExample()
+
+        ScaffoldExample(navController, routinesList)
 }
+
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScaffoldExample() {
+fun ScaffoldExample(navController: NavHostController, routinesList : List<Routine>?) {
     var presses by remember { mutableIntStateOf(0) }
     val list : List<Int> = listOf(1,2,3,4,5,6,7,8)
+
     val state = rememberScrollState()
 
     Scaffold(
@@ -117,7 +126,8 @@ fun ScaffoldExample() {
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .fillMaxWidth().verticalScroll(state),
+                .fillMaxWidth()
+                .verticalScroll(state),
             verticalArrangement = Arrangement.spacedBy(16.dp)
             ,
         ) {
@@ -125,32 +135,37 @@ fun ScaffoldExample() {
                 modifier = Modifier.padding(8.dp),
                 text = stringResource(id = R.string.your_routines),
             )
-            for (elem in list){
-                OutlinedCard(
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surface
-                    ),
-                    border = BorderStroke(1.dp, Color.Black),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp),
-                ) {
-                    Row (verticalAlignment = Alignment.CenterVertically){
-                        Text(
-                            text = elem.toString(),
-                            modifier = Modifier
-                                .padding(16.dp),
-                            textAlign = TextAlign.Center,
-                        )
-                        Spacer(Modifier.weight(1f))
-                        IconButton(onClick = { /* doSomething() */ }) {
-                            Icon(Icons.Outlined.PlayArrow, contentDescription = "Play Routine")
+            if (routinesList != null) {
+                for (routine in routinesList){
+                    OutlinedCard(
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surface
+                        ),
+                        border = BorderStroke(1.dp, Color.Black),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(100.dp),
+                    ) {
+                        Row (verticalAlignment = Alignment.CenterVertically){
+                            routine.name?.let {
+                                Text(
+                                    text = it,
+                                    modifier = Modifier
+                                        .padding(16.dp),
+                                    textAlign = TextAlign.Center,
+                                )
+                            }
+                            Spacer(Modifier.weight(1f))
+                            IconButton(onClick = { navController.navigate("routine/{id}") }) {
+                                Icon(Icons.Outlined.PlayArrow, contentDescription = "Play Routine")
+                            }
                         }
+
                     }
-
                 }
-
-
+            }
+            else{
+                Text(text = stringResource(id = R.string.no_routines))
             }
         }
     }

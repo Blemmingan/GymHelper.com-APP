@@ -15,6 +15,7 @@ string OKButton
 string add_sport
 string app_name
 string delete_sport
+string duration
 string get_all_sports
 string get_current_sport
 string get_current_user
@@ -25,8 +26,12 @@ string login_fail
 string login_success
 string logout
 string modify_sport
+string noExercises
+string no_routines
 string redirecting
+string repetitions
 string retry
+string your_routines
 style Theme.Api
 xml backup_rules
 xml data_extraction_rules

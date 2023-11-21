@@ -4,24 +4,24 @@
             "outputFile": "ar.edu.itba.example.api.app-mergeDebugResources-48:/values-zh-rCN/values-zh-rCN.xml",
             "map": [
                 {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/e060ddb424a06ecfb8e75da3d70f4c48/transformed/core-1.12.0/res/values-zh-rCN/values-zh-rCN.xml",
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\95307028250a3d1c2707ec3c5d80d07c\\transformed\\material3-1.0.0\\res\\values-zh-rCN\\values-zh-rCN.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,147,248,342,436,529,623,719",
-                        "endColumns": "91,100,93,93,92,93,95,100",
-                        "endOffsets": "142,243,337,431,524,618,714,815"
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,127,196",
+                        "endColumns": "71,68,70",
+                        "endOffsets": "122,191,262"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,26",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,197,298,392,486,579,673,2037",
-                        "endColumns": "91,100,93,93,92,93,95,100",
-                        "endOffsets": "192,293,387,481,574,668,764,2133"
+                        "startLines": "11,14,16",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "922,1170,1316",
+                        "endColumns": "71,68,70",
+                        "endOffsets": "989,1234,1382"
                     }
                 },
                 {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/ee64e97561dea54bff65e93822e94c1c/transformed/ui-release/res/values-zh-rCN/values-zh-rCN.xml",
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\ee64e97561dea54bff65e93822e94c1c\\transformed\\ui-release\\res\\values-zh-rCN\\values-zh-rCN.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,20 +38,20 @@
                     }
                 },
                 {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/95307028250a3d1c2707ec3c5d80d07c/transformed/material3-1.0.0/res/values-zh-rCN/values-zh-rCN.xml",
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\e060ddb424a06ecfb8e75da3d70f4c48\\transformed\\core-1.12.0\\res\\values-zh-rCN\\values-zh-rCN.xml",
                     "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,127,196",
-                        "endColumns": "71,68,70",
-                        "endOffsets": "122,191,262"
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,147,248,342,436,529,623,719",
+                        "endColumns": "91,100,93,93,92,93,95,100",
+                        "endOffsets": "142,243,337,431,524,618,714,815"
                     },
                     "to": {
-                        "startLines": "11,14,16",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "922,1170,1316",
-                        "endColumns": "71,68,70",
-                        "endOffsets": "989,1234,1382"
+                        "startLines": "2,3,4,5,6,7,8,26",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,197,298,392,486,579,673,2037",
+                        "endColumns": "91,100,93,93,92,93,95,100",
+                        "endOffsets": "192,293,387,481,574,668,764,2133"
                     }
                 }
             ]

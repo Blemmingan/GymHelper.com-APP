@@ -2,6 +2,8 @@ package ar.edu.itba.example.api.data.network
 
 import ar.edu.itba.example.api.data.network.api.ApiUserService
 import ar.edu.itba.example.api.data.network.model.NetworkCredentials
+import ar.edu.itba.example.api.data.network.model.NetworkPagedContent
+import ar.edu.itba.example.api.data.network.model.NetworkRoutine
 import ar.edu.itba.example.api.data.network.model.NetworkUser
 import ar.edu.itba.example.api.util.SessionManager
 
@@ -24,5 +26,15 @@ class UserRemoteDataSource(
 
     suspend fun getCurrentUser(): NetworkUser {
         return handleApiResponse { apiUserService.getCurrentUser() }
+    }
+
+    suspend fun getCurrentUserRoutines(
+        page: Int = 0,
+        size: Int = 50,
+        orderBy: String = "date"
+    ): NetworkPagedContent<NetworkRoutine> {
+        return handleApiResponse{
+            apiUserService.getCurrentUserRoutines(page, size, orderBy)
+        }
     }
 }

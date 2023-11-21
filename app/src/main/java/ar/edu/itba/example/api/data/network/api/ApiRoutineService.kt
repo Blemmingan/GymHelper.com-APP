@@ -14,7 +14,9 @@ import retrofit2.http.Query
 
 interface ApiRoutineService {
     @GET("routines")
-    suspend fun getRoutines(@Query("size") size: Int = 50): Response<NetworkPagedContent<NetworkRoutine>>
+    suspend fun getRoutines(
+        @Query("size") size: Int = 50
+    ): Response<NetworkPagedContent<NetworkRoutine>>
 
     @POST("routines")
     suspend fun addRoutine(@Body routine: NetworkRoutine): Response<NetworkRoutine>

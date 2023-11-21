@@ -1,5 +1,6 @@
 package ar.edu.itba.example.api.data.repository
 
+import ar.edu.itba.example.api.data.model.Routine
 import ar.edu.itba.example.api.data.model.User
 import ar.edu.itba.example.api.data.network.UserRemoteDataSource
 import kotlinx.coroutines.sync.Mutex
@@ -32,5 +33,13 @@ class UserRepository(
         }
 
         return currentUserMutex.withLock { this.currentUser }
+    }
+
+    suspend fun getCurrentUserRoutines(
+        page: Int = 0,
+        size: Int = 50,
+        orderBy: String = "date"
+    ): List<Routine> {
+        return remoteDataSource.getCurrentUserRoutines(page, size, orderBy).content.map {it.asModel()}
     }
 }

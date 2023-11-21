@@ -16,7 +16,7 @@ interface ApiCycleExerciseService {
     @GET("cycles/{cycleId}/exercises")
     suspend fun getCycleExercises(
         @Path("cycleId") cycleId: Int,
-        @Query("size") size: Int = 50
+        @Query("size") size: Int = 1000
     ): Response<NetworkPagedContent<NetworkCycleExercise>>
 
     @POST("cycles/{cycleId}/exercises/{exerciseId}")

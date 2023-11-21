@@ -59,7 +59,8 @@ import kotlinx.coroutines.launch
 fun homeScreen(navController: NavHostController,
                viewModel: MainViewModel = viewModel(factory = getViewModelFactory())
 ){
-    var routinesList : List<Routine>? = null
+    viewModel.getCurrentUserRoutines()
+    var routinesList : List<Routine>? = viewModel.uiState.currentUserRoutines
     val composableScope = rememberCoroutineScope()
     LaunchedEffect(key1 = routinesList, block = {composableScope.launch { routinesList = viewModel.getRoutines() }})
 
@@ -156,7 +157,7 @@ fun ScaffoldExample(navController: NavHostController, routinesList : List<Routin
                                 )
                             }
                             Spacer(Modifier.weight(1f))
-                            IconButton(onClick = { navController.navigate("routine/{id}") }) {
+                            IconButton(onClick = { navController.navigate("routine/"+routine.id.toString()) }) {
                                 Icon(Icons.Outlined.PlayArrow, contentDescription = "Play Routine")
                             }
                         }

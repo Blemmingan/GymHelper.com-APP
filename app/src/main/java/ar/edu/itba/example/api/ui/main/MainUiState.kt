@@ -16,7 +16,10 @@ data class CycleWithExercises(
 data class MainUiState(
     val isAuthenticated: Boolean = false,
     val isFetching: Boolean = false,
+
     val currentUser: User? = null,
+    val currentUserRoutines: List<Routine>? = null,
+
     val sports: List<Sport>? = null,
     val currentSport: Sport? = null,
     val error: Error? = null,

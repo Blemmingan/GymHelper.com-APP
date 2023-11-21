@@ -8,8 +8,7 @@ import androidx.lifecycle.viewModelScope
 import ar.edu.itba.example.api.data.DataSourceException
 import ar.edu.itba.example.api.data.model.CycleExercise
 import ar.edu.itba.example.api.data.model.Error
-import ar.edu.itba.example.api.data.model.Exercise
-import ar.edu.itba.example.api.data.model.Sport
+import ar.edu.itba.example.api.data.model.Routine
 import ar.edu.itba.example.api.data.repository.RoutineRepository
 import ar.edu.itba.example.api.data.repository.SportRepository
 import ar.edu.itba.example.api.data.repository.UserRepository
@@ -75,6 +74,10 @@ class MainViewModel(
         {routineRepository.getRoutine(routineId)},
         {state, response -> state.copy(currentRoutine = response)}
     )
+
+    suspend fun getRoutines(): List<Routine> {
+        return routineRepository.getRoutines(false)
+    }
 
     fun getCycles(routineId: Int) = runOnViewModelScope(
         {getCyclesAux(routineId) },

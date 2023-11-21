@@ -4,24 +4,7 @@
             "outputFile": "ar.edu.itba.example.api.app-mergeDebugResources-48:/values-lv/values-lv.xml",
             "map": [
                 {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/95307028250a3d1c2707ec3c5d80d07c/transformed/material3-1.0.0/res/values-lv/values-lv.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,132,211",
-                        "endColumns": "76,78,75",
-                        "endOffsets": "127,206,282"
-                    },
-                    "to": {
-                        "startLines": "11,14,16",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "1023,1299,1468",
-                        "endColumns": "76,78,75",
-                        "endOffsets": "1095,1373,1539"
-                    }
-                },
-                {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/e060ddb424a06ecfb8e75da3d70f4c48/transformed/core-1.12.0/res/values-lv/values-lv.xml",
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\e060ddb424a06ecfb8e75da3d70f4c48\\transformed\\core-1.12.0\\res\\values-lv\\values-lv.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/ee64e97561dea54bff65e93822e94c1c/transformed/ui-release/res/values-lv/values-lv.xml",
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\ee64e97561dea54bff65e93822e94c1c\\transformed\\ui-release\\res\\values-lv\\values-lv.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -52,6 +35,23 @@
                         "startOffsets": "836,934,1100,1196,1378,1544,1630,1718,1811,1895,1965,2035,2120,2207,2381,2459,2527",
                         "endColumns": "97,88,95,102,89,85,87,92,83,69,69,84,86,72,77,67,121",
                         "endOffsets": "929,1018,1191,1294,1463,1625,1713,1806,1890,1960,2030,2115,2202,2275,2454,2522,2644"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\95307028250a3d1c2707ec3c5d80d07c\\transformed\\material3-1.0.0\\res\\values-lv\\values-lv.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,132,211",
+                        "endColumns": "76,78,75",
+                        "endOffsets": "127,206,282"
+                    },
+                    "to": {
+                        "startLines": "11,14,16",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "1023,1299,1468",
+                        "endColumns": "76,78,75",
+                        "endOffsets": "1095,1373,1539"
                     }
                 }
             ]

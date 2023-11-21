@@ -4,24 +4,7 @@
             "outputFile": "ar.edu.itba.example.api.app-mergeDebugResources-48:/values-bn/values-bn.xml",
             "map": [
                 {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/95307028250a3d1c2707ec3c5d80d07c/transformed/material3-1.0.0/res/values-bn/values-bn.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,140,218",
-                        "endColumns": "84,77,81",
-                        "endOffsets": "135,213,295"
-                    },
-                    "to": {
-                        "startLines": "11,14,16",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "1012,1285,1449",
-                        "endColumns": "84,77,81",
-                        "endOffsets": "1092,1358,1526"
-                    }
-                },
-                {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/e060ddb424a06ecfb8e75da3d70f4c48/transformed/core-1.12.0/res/values-bn/values-bn.xml",
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\e060ddb424a06ecfb8e75da3d70f4c48\\transformed\\core-1.12.0\\res\\values-bn\\values-bn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/ee64e97561dea54bff65e93822e94c1c/transformed/ui-release/res/values-bn/values-bn.xml",
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\ee64e97561dea54bff65e93822e94c1c\\transformed\\ui-release\\res\\values-bn\\values-bn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -52,6 +35,23 @@
                         "startOffsets": "834,928,1097,1187,1363,1531,1610,1716,1803,1892,1962,2032,2110,2191,2375,2450,2518",
                         "endColumns": "93,83,89,97,85,78,105,86,88,69,69,77,80,82,74,67,117",
                         "endOffsets": "923,1007,1182,1280,1444,1605,1711,1798,1887,1957,2027,2105,2186,2269,2445,2513,2631"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\95307028250a3d1c2707ec3c5d80d07c\\transformed\\material3-1.0.0\\res\\values-bn\\values-bn.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,140,218",
+                        "endColumns": "84,77,81",
+                        "endOffsets": "135,213,295"
+                    },
+                    "to": {
+                        "startLines": "11,14,16",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "1012,1285,1449",
+                        "endColumns": "84,77,81",
+                        "endOffsets": "1092,1358,1526"
                     }
                 }
             ]

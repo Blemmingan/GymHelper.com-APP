@@ -11,17 +11,22 @@
     <string name="add_sport">ADD SPORT</string>
     <string name="app_name">Api</string>
     <string name="delete_sport">DELETE SPORT</string>
+    <string name="duration">Duration: %1$d</string>
     <string name="get_all_sports">GET ALL SPORTS</string>
     <string name="get_current_sport">GET CURRENT SPORT</string>
     <string name="get_current_user">GET CURRENT USER</string>
     <string name="gymhelp">GymHelper</string>
-    <string name="local_desc">Boton de menu</string>
+    <string name="local_desc">Menu Button</string>
     <string name="login">LOGIN</string>
     <string name="login_fail">Login Failed</string>
     <string name="login_success">Login Successful</string>
     <string name="logout">LOGOUT</string>
     <string name="modify_sport">MODIFY SPORT</string>
+    <string name="noExercises">This cycle has no exercises</string>
+    <string name="no_routines">You have no routines.</string>
     <string name="redirecting">Redirecting…</string>
+    <string name="repetitions">Repetitions: %1$d</string>
     <string name="retry">Please try again.</string>
+    <string name="your_routines">Your Routines</string>
     <style name="Theme.Api" parent="android:Theme.Material.Light.NoActionBar"/>
 </resources>

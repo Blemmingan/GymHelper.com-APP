@@ -15,7 +15,7 @@ interface ApiCycleService {
     @GET("routines/{routineId}/cycles")
     suspend fun getCycles(
         @Path("routineId") routineId: Int,
-        @Query("size") size: Int = 50
+        @Query("size") size: Int = 1000
     ): Response<NetworkPagedContent<NetworkCycle>>
 
     @POST("routines/{routineId}/cycles")

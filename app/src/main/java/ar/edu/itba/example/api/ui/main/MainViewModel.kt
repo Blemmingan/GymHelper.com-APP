@@ -48,6 +48,15 @@ class MainViewModel(
         { state, response -> state.copy(currentUser = response) }
     )
 
+    fun getCurrentUserRoutines(
+        page: Int = 0,
+        size: Int = 50,
+        orderBy: String = "date"
+    ) = runOnViewModelScope(
+        { userRepository.getCurrentUserRoutines(page, size, orderBy)},
+        { state, response -> state.copy(currentUserRoutines = response)}
+    )
+
     private fun <R> runOnViewModelScope(
         block: suspend () -> R,
         updateState: (MainUiState, R) -> MainUiState

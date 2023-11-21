@@ -1,10 +1,12 @@
 package ar.edu.itba.example.api.ui.main
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -74,7 +76,7 @@ fun homeScreen(navController: NavHostController,
 @Composable
 fun ScaffoldExample(navController: NavHostController, routinesList : List<Routine>?) {
     var presses by remember { mutableIntStateOf(0) }
-    val list : List<Int> = listOf(1,2,3,4,5,6,7,8)
+    val list: List<Int> = listOf(1, 2, 3, 4, 5, 6, 7, 8)
 
     val state = rememberScrollState()
 
@@ -82,7 +84,11 @@ fun ScaffoldExample(navController: NavHostController, routinesList : List<Routin
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.gymhelp), maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    Text(
+                        text = stringResource(id = R.string.gymhelp),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
 
                 },
                 navigationIcon = {
@@ -129,15 +135,14 @@ fun ScaffoldExample(navController: NavHostController, routinesList : List<Routin
                 .padding(innerPadding)
                 .fillMaxWidth()
                 .verticalScroll(state),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-            ,
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
                 text = stringResource(id = R.string.your_routines),
             )
             if (routinesList != null) {
-                for (routine in routinesList){
+                for (routine in routinesList) {
                     OutlinedCard(
                         colors = CardDefaults.cardColors(
                             containerColor = MaterialTheme.colorScheme.surface
@@ -147,7 +152,7 @@ fun ScaffoldExample(navController: NavHostController, routinesList : List<Routin
                             .fillMaxWidth()
                             .height(100.dp),
                     ) {
-                        Row (verticalAlignment = Alignment.CenterVertically){
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             routine.name?.let {
                                 Text(
                                     text = it,
@@ -157,17 +162,52 @@ fun ScaffoldExample(navController: NavHostController, routinesList : List<Routin
                                 )
                             }
                             Spacer(Modifier.weight(1f))
-                            IconButton(onClick = { navController.navigate("routine/"+routine.id.toString()) }) {
-                                Icon(Icons.Outlined.PlayArrow, contentDescription = "Play Routine")
+                            IconButton(onClick = { navController.navigate("routine/" + routine.id.toString()) },) {
+                                Icon(
+                                    Icons.Outlined.PlayArrow,
+                                    contentDescription = "Play Routine",
+                                    Modifier.fillMaxSize()
+                                )
                             }
                         }
 
                     }
                 }
-            }
-            else{
+            } else {
                 Text(text = stringResource(id = R.string.no_routines))
+                /*OutlinedCard(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surface
+                    ),
+                    border = BorderStroke(1.dp, Color.Black),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp)
+                ) {
+                    Row() {
+                        Spacer(modifier = Modifier)
+                        Text(
+                            text = "Nombre",
+                            modifier = Modifier
+                                .padding(16.dp),
+                            textAlign = TextAlign.Center,
+                        )
+
+                        Spacer(Modifier.weight(1f))
+                        IconButton(onClick = { /*Hi*/ }) {
+                            Icon(
+                                Icons.Outlined.PlayArrow,
+                                contentDescription = "Play Routine",
+                                Modifier.fillMaxSize()
+                            )
+                        }
+                    }
+                    NO DESCOMENTAR HASTA QUE ME ARREGLEN LA API
+
+                }*/
             }
         }
+
+
     }
 }

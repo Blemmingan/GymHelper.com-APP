@@ -1,10 +1,13 @@
 package ar.edu.itba.example.api.ui.main
 
 import android.provider.Settings.Global.getString
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,7 +22,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -56,7 +61,7 @@ fun loginScreen(
     Column (horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize(1f)){
-        Text(text = "GYMHELPER.COM", fontSize = 30.sp, modifier = Modifier.padding(10.dp))
+        Text(text = "GYMHELPER.COM", fontSize = 30.sp, modifier = Modifier.padding(10.dp), fontWeight = FontWeight.Bold)
         TextField(value = userText, onValueChange = {userText = it},
             label = { Text(text = "Username")}, singleLine = true, modifier = Modifier.padding(5.dp))
         TextField(value = passwordText, onValueChange = {passwordText = it},

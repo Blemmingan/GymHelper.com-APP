@@ -1,5 +1,8 @@
 package ar.edu.itba.example.api.ui.main
 
+import android.content.Context
+import android.content.Intent
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -19,8 +22,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,6 +45,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ar.edu.itba.example.api.R
 import ar.edu.itba.example.api.data.model.Cycle
@@ -72,6 +81,7 @@ fun RoutineScreen(
 @Composable
 fun RoutineDetail(
     viewModel: MainViewModel,
+    context: Context = LocalContext.current as ComponentActivity
 ) {
     Column(
         verticalArrangement = Arrangement.Top,
@@ -92,6 +102,20 @@ fun RoutineDetail(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
+            )
+        }
+        IconButton(onClick = {
+            val link = "http://www.GymHelper.com/routine/${viewModel.uiState.currentRoutine?.id}"
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, link)
+            context.startActivity(Intent.createChooser(intent, "Share Link"))
+        }
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Share,
+                contentDescription = "share",
+                tint = Color.LightGray
             )
         }
         viewModel.uiState.currentRoutineDetails.forEach{cycleWithExercises -> CycleView(cycleWithExercises.cycle!!, cycleWithExercises.exercises!!) }

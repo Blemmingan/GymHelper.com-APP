@@ -42,7 +42,7 @@ fun MyNavHost(
         composable(
             "routine/{id}",
             arguments = listOf(navArgument("id") {type = NavType.IntType}),
-            deepLinks = listOf(navDeepLink{uriPattern = "$uri/routine?id={id}"}, navDeepLink {uriPattern = "$secureUri/routine?id={id}"})
+            deepLinks = listOf(navDeepLink{uriPattern = "$uri/routine/{id}"}, navDeepLink {uriPattern = "$secureUri/routine/{id}"})
             ) {
                 route -> RoutineScreen(routineId = route.arguments?.getInt("id")!!)
         }

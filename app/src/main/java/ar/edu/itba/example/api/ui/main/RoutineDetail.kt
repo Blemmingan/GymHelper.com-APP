@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import ar.edu.itba.example.api.R
 import ar.edu.itba.example.api.data.model.Cycle
 import ar.edu.itba.example.api.data.model.CycleExercise
@@ -59,22 +60,28 @@ import java.io.StringReader
 @Composable
 fun RoutineScreen(
     viewModel: MainViewModel = viewModel(factory = getViewModelFactory()),
-    routineId: Int
+    routineId: Int,
+    navController: NavHostController
 ) {
-    //falta ver que este logueado
-    viewModel.getRoutine(routineId)
-    if (viewModel.uiState.currentRoutine==null){
-        Text("rutina inexistente")
-    } else if (viewModel.uiState.error == null) {
-        viewModel.getCycles(routineId)
-        if (viewModel.uiState.error == null) {
-            RoutineDetail(viewModel)
-        } else {
-            Text("cycle")
-        }
-    } else {
-        Text("error")
+    if(!viewModel.uiState.isAuthenticated){
+        navController.navigate("login")
     }
+    else{
+        viewModel.getRoutine(routineId)
+        if (viewModel.uiState.currentRoutine==null){
+            Text("rutina inexistente")
+        } else if (viewModel.uiState.error == null) {
+            viewModel.getCycles(routineId)
+            if (viewModel.uiState.error == null) {
+                RoutineDetail(viewModel)
+            } else {
+                Text("cycle")
+            }
+        } else {
+            Text("error")
+        }
+    }
+
 
 }
 

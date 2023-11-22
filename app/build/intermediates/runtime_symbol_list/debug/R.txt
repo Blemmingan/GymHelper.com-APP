@@ -243,6 +243,7 @@ int string no_routines 0x7f090029
 int string not_selected 0x7f09002a
 int string off 0x7f09002b
 int string on 0x7f09002c
+int string password 0x7f09003c
 int string range_end 0x7f09002d
 int string range_start 0x7f09002e
 int string redirecting 0x7f09002f
@@ -255,6 +256,7 @@ int string status_bar_notification_info_overflow 0x7f090035
 int string switch_role 0x7f090036
 int string tab 0x7f090037
 int string template_percent 0x7f090038
+int string username 0x7f09003d
 int string view_all_exercises 0x7f090039
 int string view_detailed_exercise 0x7f09003a
 int string your_routines 0x7f09003b

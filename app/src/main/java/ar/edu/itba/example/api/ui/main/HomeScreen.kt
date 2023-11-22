@@ -78,8 +78,6 @@ fun homeScreen(navController: NavHostController,
 
 @Composable
 fun RoutineList(navController: NavHostController, routinesList : List<Routine>?) {
-    var presses by remember { mutableIntStateOf(0) }
-    val list: List<Int> = listOf(1, 2, 3, 4, 5, 6, 7, 8)
 
     val state = rememberScrollState()
 
@@ -114,14 +112,15 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                                 )
                             }
                             Spacer(Modifier.weight(1f))
-                            IconButton(onClick = { navController.navigate("routine/" + routine.id.toString()) },) {
-                                Icon(
-                                    Icons.Outlined.PlayArrow,
-                                    contentDescription = "Play Routine",
-                                    Modifier.fillMaxSize()
-                                )
-                            }
                             Column {
+                                IconButton(onClick = { navController.navigate("routine/" + routine.id.toString()) }) {
+                                    Icon(
+                                        Icons.Outlined.PlayArrow,
+                                        contentDescription = "Play Routine",
+                                        Modifier.fillMaxSize()
+                                    )
+                                }
+
                                 IconButton(onClick = { /*TODO*/ }) {
                                     Icon(
                                         Icons.Outlined.Star,
@@ -129,6 +128,7 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                                     )
                                 }
                             }
+
                         }
 
                     }
@@ -147,7 +147,7 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                 .fillMaxWidth()
                 .height(100.dp),
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+            Row( horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
 
                     Text(
                         text = "1",
@@ -157,24 +157,22 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                     )
 
                 Spacer(Modifier.weight(1f))
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        Icons.Outlined.PlayArrow,
-                        contentDescription = "Play",
-                    )
-                }
                 Column {
-
-
-
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            Icons.Outlined.PlayArrow,
+                            contentDescription = "Play",
+                        )
+                    }
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
                             Icons.Outlined.Star,
                             contentDescription = "favourite",
                         )
                     }
-
                 }
+
+
             }
 
         }

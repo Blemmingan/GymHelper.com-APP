@@ -37,11 +37,13 @@ string next_exercise
 string next_exercises
 string noExercises
 string no_routines
+string password
 string redirecting
 string repetitions
 string retry
 string search
 string settings
+string username
 string view_all_exercises
 string view_detailed_exercise
 string your_routines

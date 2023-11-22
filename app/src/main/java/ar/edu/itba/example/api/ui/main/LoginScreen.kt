@@ -63,11 +63,11 @@ fun loginScreen(
         modifier = Modifier.fillMaxSize(1f)){
         Text(text = "GYMHELPER.COM", fontSize = 30.sp, modifier = Modifier.padding(10.dp), fontWeight = FontWeight.Bold)
         TextField(value = userText, onValueChange = {userText = it},
-            label = { Text(text = "Username")}, singleLine = true, modifier = Modifier.padding(5.dp))
+            label = { Text(text = stringResource(id = R.string.username))}, singleLine = true, modifier = Modifier.padding(5.dp))
         TextField(value = passwordText, onValueChange = {passwordText = it},
-            label = { Text(text = "Password")}, singleLine = true , modifier = Modifier.padding(5.dp) )
+            label = { Text(text = stringResource(id = R.string.password))}, singleLine = true , modifier = Modifier.padding(5.dp) )
         ElevatedButton(onClick = { viewModel.login(userText, passwordText); attemptedLogin = true}) {
-            Text(text = "LOGIN")
+            Text(text = stringResource(id = R.string.login))
         }
         if(attemptedLogin){
             LoginDialog(uiState.isAuthenticated) { attemptedLogin = false  }

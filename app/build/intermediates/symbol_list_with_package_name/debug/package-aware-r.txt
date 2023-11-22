@@ -244,6 +244,7 @@ string no_routines
 string not_selected
 string off
 string on
+string password
 string range_end
 string range_start
 string redirecting
@@ -256,6 +257,7 @@ string status_bar_notification_info_overflow
 string switch_role
 string tab
 string template_percent
+string username
 string view_all_exercises
 string view_detailed_exercise
 string your_routines

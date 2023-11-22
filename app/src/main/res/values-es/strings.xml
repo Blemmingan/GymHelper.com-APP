@@ -34,4 +34,7 @@
     <string name="next_exercise">Siguiente Ejercicio</string>
     <string name="view_all_exercises">Ver Siguientes Ejercicios</string>
     <string name="view_detailed_exercise">Ver detalle del ejerecicio</string>
+
+    <string name="username">Nombre de Usuario</string>
+    <string name="password">Contraseña</string>
 </resources>

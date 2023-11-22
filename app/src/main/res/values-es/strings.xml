@@ -37,4 +37,9 @@
 
     <string name="username">Nombre de Usuario</string>
     <string name="password">Contraseña</string>
+
+    <string name="routine_fail">No existe tal rutina</string>
+    <string name="empty_cycle_list">Lista de Ciclos Vacía</string>
+    <string name="cycle">Ciclo</string>
+    <string name="error">ERROR</string>
 </resources>

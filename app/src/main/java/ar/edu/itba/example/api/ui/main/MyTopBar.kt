@@ -10,7 +10,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -20,9 +19,9 @@ import ar.edu.itba.example.api.R
 @Composable
 fun MyTopBar(
     title: String? = null,
-    showBackButton: Boolean,
     onGoBack: () -> Unit,
-    onGoSettings: () -> Unit
+    onGoSettings: () -> Unit,
+    showBackButton: Boolean
 ) {
     CenterAlignedTopAppBar(
         title = {if (title!=null) Text(title) },

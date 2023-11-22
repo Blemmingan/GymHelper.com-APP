@@ -37,4 +37,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
 
+    <string name="routine_fail">This routine does not exist</string>
+    <string name="empty_cycle_list">Empty Cycle List</string>
+    <string name="cycle">Cycle</string>
+    <string name="error">ERROR</string>
+
 </resources>

@@ -10,7 +10,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavDeepLink
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -20,12 +19,11 @@ import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import ar.edu.itba.example.api.R
 import ar.edu.itba.example.api.ui.main.ExecuteRoutineScreen
+import ar.edu.itba.example.api.ui.main.HomeScreen
+import ar.edu.itba.example.api.ui.main.LoginScreen
 import ar.edu.itba.example.api.ui.main.MyBottomBar
-import ar.edu.itba.example.api.ui.main.MySideBar
 import ar.edu.itba.example.api.ui.main.MyTopBar
 import ar.edu.itba.example.api.ui.main.RoutineScreen
-import ar.edu.itba.example.api.ui.main.homeScreen
-import ar.edu.itba.example.api.ui.main.loginScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,11 +50,6 @@ fun MyNavHost(
         )}},
 
     ){
-        /*MySideBar(
-            currentRoute = "home",
-            onNavigate = {route -> navController.navigate(route)},
-            modifier = Modifier.padding(it)
-        )*/
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -64,11 +57,11 @@ fun MyNavHost(
         ){
             composable("login"){
                 showBars= false
-                loginScreen(navController)
+                LoginScreen(navController)
             }
             composable("home"){
                 showBars = true
-                homeScreen(navController = navController)
+                HomeScreen(navController = navController)
             }
 
             composable(

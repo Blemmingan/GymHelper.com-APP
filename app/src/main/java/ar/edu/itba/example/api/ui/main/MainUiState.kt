@@ -3,7 +3,6 @@ package ar.edu.itba.example.api.ui.main
 import ar.edu.itba.example.api.data.model.Cycle
 import ar.edu.itba.example.api.data.model.CycleExercise
 import ar.edu.itba.example.api.data.model.Error
-import ar.edu.itba.example.api.data.model.Exercise
 import ar.edu.itba.example.api.data.model.Routine
 import ar.edu.itba.example.api.data.model.Sport
 import ar.edu.itba.example.api.data.model.User

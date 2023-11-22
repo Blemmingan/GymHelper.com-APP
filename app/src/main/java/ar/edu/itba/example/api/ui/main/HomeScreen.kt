@@ -1,5 +1,8 @@
 package ar.edu.itba.example.api.ui.main
 
+import android.content.Context
+import android.content.ContextParams
+import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -56,8 +59,10 @@ import ar.edu.itba.example.api.util.getViewModelFactory
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import androidx.core.content.ContextCompat.startActivity
 import ar.edu.itba.example.api.data.model.Routine
 import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 @Composable
 fun homeScreen(navController: NavHostController,
@@ -117,12 +122,6 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                                 )
                             }
                             Column {
-                                IconButton(onClick = { /**/ }) {
-                                    Icon(
-                                        Icons.Outlined.Share,
-                                        contentDescription = "Share Routine",
-                                    )
-                                }
                                 IconButton(onClick = { /*TODO*/ }) {
                                     Icon(
                                         Icons.Outlined.Star,
@@ -165,12 +164,9 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                     )
                 }
                 Column {
-                    IconButton(onClick = { /**/ }) {
-                        Icon(
-                            Icons.Outlined.Share,
-                            contentDescription = "Share Routine",
-                        )
-                    }
+
+
+
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
                             Icons.Outlined.Star,

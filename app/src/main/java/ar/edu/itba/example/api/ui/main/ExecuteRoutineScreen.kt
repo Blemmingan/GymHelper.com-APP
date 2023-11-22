@@ -37,22 +37,30 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.OutlinedCard
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import ar.edu.itba.example.api.R
-
+import ar.edu.itba.example.api.util.getViewModelFactory
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun executeRoutineScreen(
     routineId: Int,
+    viewModel: MainViewModel = viewModel(factory = getViewModelFactory())
 ){
-    //Api
+    viewModel.getRoutine(routineId)
+    viewModel.getCycles(routineId)
     Scaffold(
-        topBar = { executeTopBar("Nombre Rutina") },
+        topBar = { viewModel.uiState.currentRoutine?.name?.let { executeTopBar(it) } },
     ) { padding ->
-        executeMainScreen(Modifier.padding(padding))
+        executeMainScreen(
+            modifier = Modifier.padding(padding),
+            cyclesWithExercise = viewModel.uiState.currentRoutineDetails
+        )
     }
 }
 
@@ -61,7 +69,8 @@ fun executeRoutineScreen(
 fun executeTopBar(routineName: String){
     CenterAlignedTopAppBar(
         title = {
-            Text(text = routineName,
+            Text(
+                text = routineName,
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center)
@@ -83,9 +92,12 @@ fun executeTopBar(routineName: String){
 
 @Composable
 fun executeMainScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    cyclesWithExercise: List<CycleWithExercises>
 ){
     var exerciseDetail by remember { mutableStateOf(true) }
+    var cycleIndex by remember { mutableIntStateOf(0) }
+    var exerciseIndex by remember { mutableIntStateOf(0) }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
@@ -94,33 +106,39 @@ fun executeMainScreen(
             .fillMaxSize()
     ){
         Spacer(Modifier.weight(0.15f, true))
-        Text(
-            text = "Ciclo",
-            fontSize = 30.sp,
-            color = MaterialTheme.colorScheme.onPrimary
-        )
+        cyclesWithExercise[cycleIndex].cycle?.name?.let {
+            Text(
+                text = it,
+                fontSize = 30.sp,
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
         if(exerciseDetail){
             Spacer(Modifier.weight(0.20f, true))
-            Text(
-                text = "Nombre Ejercicio",
-                fontSize = 40.sp,
-                color = MaterialTheme.colorScheme.onPrimary
-            )
+            cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.name?.let {
+                Text(
+                    text = it,
+                    fontSize = 40.sp,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
             Spacer(Modifier.weight(0.20f, true))
-            Text(
-                text = "Una larga decripcion de lo que trata dicho ejercicio y como debe realizarce",
-                fontSize = 25.sp,
-                color = MaterialTheme.colorScheme.onPrimary
-            )
+            cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.detail?.let {
+                Text(
+                    text = it,
+                    fontSize = 25.sp,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
             Spacer(Modifier.weight(0.3f, true))
             Text(
-                text = "Repeticiones",
+                text = cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.repetitions.toString(),
                 fontSize = 30.sp,
                 color = MaterialTheme.colorScheme.onPrimary
             )
             Spacer(Modifier.weight(0.1f, true))
             Text(
-                text = "Tiempo",
+                text = cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.duration.toString(),
                 fontSize = 30.sp,
                 color = MaterialTheme.colorScheme.onPrimary
             )
@@ -137,7 +155,7 @@ fun executeMainScreen(
         } else{
             Spacer(Modifier.weight(0.10f, true))
             Text(
-                text = "Ejercicio Actual",
+                text = stringResource(id = R.string.current_exercise),
                 fontSize = 40.sp,
                 color = MaterialTheme.colorScheme.onPrimary
             )
@@ -151,26 +169,30 @@ fun executeMainScreen(
                     .fillMaxWidth()
                     .height(100.dp),
             ){
-                Text(
-                    text = "Nombre ejercicio actual",
-                    fontSize = 20.sp,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 35.dp)
-                )
+                cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.name?.let {
+                    Text(
+                        text = it,
+                        fontSize = 20.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 35.dp)
+                    )
+                }
             }
             Spacer(Modifier.weight(0.10f, true))
             Text(
-                text = "Siguientes ejercicios",
+                text = stringResource(id = R.string.next_exercises),
                 fontSize = 40.sp,
                 color = MaterialTheme.colorScheme.onPrimary
             )
             Spacer(Modifier.weight(0.1f, true))
-            /*
-            if (exerciseList != null) {
-                for (exercise in ExerciseList){
-                    OutlinedCard(
+
+            var i = exerciseIndex + 1
+            var j = cycleIndex + 1
+
+            while (j < cyclesWithExercise.size && i < cyclesWithExercise[cycleIndex].exercises?.size!!){
+                OutlinedCard(
                         colors = CardDefaults.cardColors(
                             containerColor = MaterialTheme.colorScheme.surface
                         ),
@@ -179,8 +201,9 @@ fun executeMainScreen(
                             .fillMaxWidth()
                             .height(100.dp),
                     ) {
+                    cyclesWithExercise[j].exercises?.get(i)?.exercise?.name?.let {
                         Text(
-                            text = "Nombre siguientes ejercicios",
+                            text = it,
                             fontSize = 20.sp,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
@@ -189,20 +212,32 @@ fun executeMainScreen(
                         )
                     }
                 }
+                i++
+                j++
             }
-            */
+
         }
         Spacer(Modifier.weight(1f, true))
 
-        Button(
-            onClick = { /*Next exercise*/ },
-            modifier = Modifier.size(300.dp, 100.dp),
-        ) {
-            Text(
-                text = "Siguiente Ejercicio",
-                fontSize = 30.sp,
-                color = MaterialTheme.colorScheme.onPrimary
-            )
+
+        if(cycleIndex + 1 < cyclesWithExercise.size && exerciseIndex + 1 < cyclesWithExercise[cycleIndex].exercises?.size!!) {
+            Button(
+                onClick = {
+                    if(exerciseIndex + 1 < cyclesWithExercise[cycleIndex].exercises?.size!!){
+                        cycleIndex++
+                        exerciseIndex = 0
+                    } else {
+                        exerciseIndex++
+                    }
+                },
+                modifier = Modifier.size(300.dp, 100.dp),
+            ) {
+                Text(
+                    text = stringResource(id = R.string.next_exercise),
+                    fontSize = 30.sp,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
         }
 
         Spacer(Modifier.weight(1f, true))
@@ -211,7 +246,7 @@ fun executeMainScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
-                text = if(exerciseDetail) "Ver ejercicios" else "Ver ejercicio en detalle",
+                text = if(exerciseDetail) stringResource(id = R.string.view_all_exercises) else stringResource(id = R.string.view_detailed_exercise),
                 fontSize = 15.sp,
                 color = MaterialTheme.colorScheme.onPrimary
             )

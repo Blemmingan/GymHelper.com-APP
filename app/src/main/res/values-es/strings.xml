@@ -29,4 +29,9 @@
     <string name="home">Inicio</string>
     <string name="favs">Favoritos</string>
     <string name="search">Buscar</string>
+    <string name="current_exercise">Ejercicio Actual</string>
+    <string name="next_exercises">Siguientes ejercicios</string>
+    <string name="next_exercise">Siguiente Ejercicio</string>
+    <string name="view_all_exercises">Ver Siguientes Ejercicios</string>
+    <string name="view_detailed_exercise">Ver detalle del ejerecicio</string>
 </resources>

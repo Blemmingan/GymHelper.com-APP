@@ -6,11 +6,15 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -43,43 +47,58 @@ fun loginScreen(
     navController: NavHostController,
     viewModel: MainViewModel = viewModel(factory = getViewModelFactory())
 ){
+        var userText by rememberSaveable {
+            mutableStateOf("")
+        }
+        var passwordText by rememberSaveable {
+            mutableStateOf("")
+        }
+        var accepted by rememberSaveable {
+            mutableStateOf(false)
+        }
+        var attemptedLogin by rememberSaveable {
+            mutableStateOf(false)
+        }
+        val uiState = viewModel.uiState
 
-    var userText by rememberSaveable {
-        mutableStateOf("")
-    }
-    var passwordText by rememberSaveable {
-        mutableStateOf("")
-    }
-    var accepted by rememberSaveable {
-        mutableStateOf(false)
-    }
-    var attemptedLogin by rememberSaveable {
-        mutableStateOf(false)
-    }
-    val uiState = viewModel.uiState
+        Column (
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize(1f)
+        ){
+            Text(
+                text = stringResource(id = R.string.gymhelp),
+                fontSize = 30.sp,
+                modifier = Modifier.padding(10.dp),
+                fontWeight = FontWeight.Bold
+            )
+            OutlinedTextField(
+                value = userText,
+                onValueChange = {userText = it},
+                label = { Text(text = stringResource(id = R.string.username))},
+                singleLine = true,
+                modifier = Modifier.padding(5.dp)
+            )
+            OutlinedTextField(
+                value = passwordText,
+                onValueChange = {passwordText = it},
+                label = { Text(text = stringResource(id = R.string.password))},
+                singleLine = true ,
+                modifier = Modifier.padding(5.dp) )
+            ElevatedButton(
+                onClick = { viewModel.login(userText, passwordText); attemptedLogin = true},
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+            ){
+                    Text(text = stringResource(id = R.string.login))
+                }
+            if(attemptedLogin){
+                LoginDialog(uiState.isAuthenticated) { attemptedLogin = false  }
+            }
+            if (uiState.isAuthenticated){
+                navController.navigate("home")
+            }
+        }
 
-    Column (horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize(1f)){
-        Text(text = "GYMHELPER.COM", fontSize = 30.sp, modifier = Modifier.padding(10.dp), fontWeight = FontWeight.Bold)
-        TextField(value = userText, onValueChange = {userText = it},
-            label = { Text(text = stringResource(id = R.string.username))}, singleLine = true, modifier = Modifier.padding(5.dp))
-        TextField(value = passwordText, onValueChange = {passwordText = it},
-            label = { Text(text = stringResource(id = R.string.password))}, singleLine = true , modifier = Modifier.padding(5.dp) )
-        ElevatedButton(onClick = { viewModel.login(userText, passwordText); attemptedLogin = true}) {
-            Text(text = stringResource(id = R.string.login))
-        }
-        if(attemptedLogin){
-            LoginDialog(uiState.isAuthenticated) { attemptedLogin = false  }
-        }
-        if(uiState.isAuthenticated){
-            navController.navigate("home")
-        }
-        ElevatedButton(onClick = { navController.navigate("home") }) {
-            Text(text = "DEBUG: GO HOME")
-        }
-
-    }
 }
 
 

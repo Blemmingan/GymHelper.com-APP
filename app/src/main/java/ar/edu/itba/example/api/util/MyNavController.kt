@@ -76,7 +76,8 @@ fun MyNavHost(
                 arguments = listOf(navArgument("id") {type = NavType.IntType}),
                 deepLinks = listOf(navDeepLink{uriPattern = "$uri/routine/{id}"}, navDeepLink {uriPattern = "$secureUri/routine/{id}"})
             ) {
-                    route -> RoutineScreen(
+                    route -> showBars = true
+                        RoutineScreen(
                         routineId = route.arguments?.getInt("id")!!,
                         navController = navController
                     )
@@ -86,8 +87,10 @@ fun MyNavHost(
                 "routine/execution/{id}",
                 arguments = listOf(navArgument("id") {type = NavType.IntType}),
             ) {
-                    route -> ExecuteRoutineScreen(
-                        routineId = route.arguments?.getInt("id")!!,
+                    route -> showBars = false
+                        ExecuteRoutineScreen(
+                            routineId = route.arguments?.getInt("id")!!,
+                            navController = navController
                     )
             }
         }

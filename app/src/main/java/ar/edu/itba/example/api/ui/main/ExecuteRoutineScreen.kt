@@ -30,7 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.filled.ArrowBack
@@ -42,6 +41,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import ar.edu.itba.example.api.R
 import ar.edu.itba.example.api.util.getViewModelFactory
 
@@ -50,23 +50,29 @@ import ar.edu.itba.example.api.util.getViewModelFactory
 @Composable
 fun ExecuteRoutineScreen(
     viewModel: MainViewModel = viewModel(factory = getViewModelFactory()),
-    routineId: Int
+    routineId: Int,
+    navController: NavHostController
 ){
     viewModel.getRoutine(routineId)
     viewModel.getCycles(routineId)
-    Scaffold(
-        topBar = { viewModel.uiState.currentRoutine?.name?.let { ExecuteTopBar(it) } },
-    ) { padding ->
-        ExecuteMainScreen(
-            modifier = Modifier.padding(padding),
-            cyclesWithExercise = viewModel.uiState.currentRoutineDetails
-        )
+    if(viewModel.uiState.currentRoutineDetails.isNotEmpty()){
+        Scaffold(
+            topBar = { viewModel.uiState.currentRoutine?.name?.let { ExecuteTopBar(routineName = it, navController = navController) } },
+        ) { padding ->
+            ExecuteMainScreen(
+                modifier = Modifier.padding(padding),
+                cyclesWithExercise = viewModel.uiState.currentRoutineDetails
+            )
+        }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ExecuteTopBar(routineName: String){
+fun ExecuteTopBar(
+    routineName: String,
+    navController: NavHostController
+){
     CenterAlignedTopAppBar(
         title = {
             Text(
@@ -80,7 +86,7 @@ fun ExecuteTopBar(routineName: String){
             titleContentColor = MaterialTheme.colorScheme.onPrimary
         ),
         navigationIcon = {
-            IconButton(onClick = { /* goBack */ }) {
+            IconButton(onClick = { navController.popBackStack() }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = null,
@@ -252,17 +258,5 @@ fun ExecuteMainScreen(
             )
         }
     }
-}
-
-@Preview()
-@Composable
-fun TopBarPreview() {
-    ExecuteTopBar("Nombre Rutina")
-}
-
-@Preview()
-@Composable
-fun ExecuteRoutineScreenPreview() {
-    ExecuteRoutineScreen(routineId = 1)
 }
 

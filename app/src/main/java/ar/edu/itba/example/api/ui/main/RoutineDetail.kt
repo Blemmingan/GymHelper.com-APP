@@ -73,6 +73,9 @@ fun RoutineScreen(
             Text("rutina inexistente")
         } else if (viewModel.uiState.error == null) {
             viewModel.getCycles(routineId)
+            if(viewModel.uiState.currentRoutineDetails.isEmpty()){
+                Text("Empty Cycle List")
+            }
             if (viewModel.uiState.error == null) {
                 RoutineDetail(
                     viewModel = viewModel,

@@ -77,7 +77,7 @@ fun LoginScreen(
             ){
                     Text(text = stringResource(id = R.string.login))
                 }
-            if(attemptedLogin){
+            if(attemptedLogin && !uiState.isFetching){
                 LoginDialog(uiState.isAuthenticated) { attemptedLogin = false  }
             }
             if (uiState.isAuthenticated){

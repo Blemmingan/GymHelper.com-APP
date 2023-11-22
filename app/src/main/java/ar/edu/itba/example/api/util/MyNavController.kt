@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import ar.edu.itba.example.api.R
+import ar.edu.itba.example.api.ui.main.ExecuteRoutineScreen
 import ar.edu.itba.example.api.ui.main.MyBottomBar
 import ar.edu.itba.example.api.ui.main.MySideBar
 import ar.edu.itba.example.api.ui.main.MyTopBar
@@ -78,6 +79,15 @@ fun MyNavHost(
                     route -> RoutineScreen(
                         routineId = route.arguments?.getInt("id")!!,
                         navController = navController
+                    )
+            }
+
+            composable(
+                "routine/execution/{id}",
+                arguments = listOf(navArgument("id") {type = NavType.IntType}),
+            ) {
+                    route -> ExecuteRoutineScreen(
+                        routineId = route.arguments?.getInt("id")!!,
                     )
             }
         }

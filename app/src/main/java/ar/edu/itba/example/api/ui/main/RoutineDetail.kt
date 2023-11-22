@@ -23,6 +23,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -73,7 +74,11 @@ fun RoutineScreen(
         } else if (viewModel.uiState.error == null) {
             viewModel.getCycles(routineId)
             if (viewModel.uiState.error == null) {
-                RoutineDetail(viewModel)
+                RoutineDetail(
+                    viewModel = viewModel,
+                    navController = navController,
+                    routineId = routineId
+                )
             } else {
                 Text("cycle")
             }
@@ -88,7 +93,9 @@ fun RoutineScreen(
 @Composable
 fun RoutineDetail(
     viewModel: MainViewModel,
-    context: Context = LocalContext.current as ComponentActivity
+    context: Context = LocalContext.current as ComponentActivity,
+    navController: NavHostController,
+    routineId: Int
 ) {
     Column(
         verticalArrangement = Arrangement.Top,
@@ -111,19 +118,31 @@ fun RoutineDetail(
                 color = Color.White
             )
         }
-        IconButton(onClick = {
-            val link = "http://www.GymHelper.com/routine/${viewModel.uiState.currentRoutine?.id}"
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_TEXT, link)
-            context.startActivity(Intent.createChooser(intent, "Share Link"))
-        }
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Share,
-                contentDescription = "share",
-                tint = Color.LightGray
-            )
+        Row {
+            IconButton(onClick = {
+                val link =
+                    "http://www.GymHelper.com/routine/${viewModel.uiState.currentRoutine?.id}"
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_TEXT, link)
+                context.startActivity(Intent.createChooser(intent, "Share Link"))
+            }
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Share,
+                    contentDescription = "share",
+                    tint = Color.LightGray
+                )
+            }
+            IconButton(onClick = {
+                navController.navigate("routine/execution/$routineId")
+            }
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.PlayArrow,
+                    contentDescription = "execute",
+                )
+            }
         }
         viewModel.uiState.currentRoutineDetails.forEach{cycleWithExercises -> CycleView(cycleWithExercises.cycle!!, cycleWithExercises.exercises!!) }
         /*if (viewModel.uiState.isFetching){

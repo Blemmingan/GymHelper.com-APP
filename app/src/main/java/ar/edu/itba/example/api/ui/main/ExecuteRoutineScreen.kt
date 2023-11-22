@@ -48,16 +48,16 @@ import ar.edu.itba.example.api.util.getViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun executeRoutineScreen(
-    routineId: Int,
-    viewModel: MainViewModel = viewModel(factory = getViewModelFactory())
+fun ExecuteRoutineScreen(
+    viewModel: MainViewModel = viewModel(factory = getViewModelFactory()),
+    routineId: Int
 ){
     viewModel.getRoutine(routineId)
     viewModel.getCycles(routineId)
     Scaffold(
-        topBar = { viewModel.uiState.currentRoutine?.name?.let { executeTopBar(it) } },
+        topBar = { viewModel.uiState.currentRoutine?.name?.let { ExecuteTopBar(it) } },
     ) { padding ->
-        executeMainScreen(
+        ExecuteMainScreen(
             modifier = Modifier.padding(padding),
             cyclesWithExercise = viewModel.uiState.currentRoutineDetails
         )
@@ -66,7 +66,7 @@ fun executeRoutineScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun executeTopBar(routineName: String){
+fun ExecuteTopBar(routineName: String){
     CenterAlignedTopAppBar(
         title = {
             Text(
@@ -91,7 +91,7 @@ fun executeTopBar(routineName: String){
 }
 
 @Composable
-fun executeMainScreen(
+fun ExecuteMainScreen(
     modifier: Modifier = Modifier,
     cyclesWithExercise: List<CycleWithExercises>
 ){
@@ -256,13 +256,13 @@ fun executeMainScreen(
 
 @Preview()
 @Composable
-fun topBarPreview() {
-    executeTopBar("Nombre Rutina")
+fun TopBarPreview() {
+    ExecuteTopBar("Nombre Rutina")
 }
 
 @Preview()
 @Composable
-fun executeRoutineScreenPreview() {
-    executeRoutineScreen(routineId = 1)
+fun ExecuteRoutineScreenPreview() {
+    ExecuteRoutineScreen(routineId = 1)
 }
 

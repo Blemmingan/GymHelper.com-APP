@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Api</string>
+    <string name="app_name">GymHelper</string>
     <string name="login">Ingresar</string>
     <string name="logout">Salir</string>
     <string name="get_current_user">Tomar Usuario Actual</string>
@@ -22,4 +22,11 @@
     <string name="noExercises">El ciclo no tiene ejercicios</string>
     <string name="duration">Duración: %1$d</string>
     <string name="no_routines">No tienes ninguna rutina.</string>
+
+    <string name="backButton">Volver</string>
+    <string name="settings">Configuración</string>
+
+    <string name="home">Inicio</string>
+    <string name="favs">Favoritos</string>
+    <string name="search">Buscar</string>
 </resources>

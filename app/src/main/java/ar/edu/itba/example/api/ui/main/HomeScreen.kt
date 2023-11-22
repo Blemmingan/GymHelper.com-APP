@@ -66,80 +66,23 @@ fun homeScreen(navController: NavHostController,
     val composableScope = rememberCoroutineScope()
     LaunchedEffect(key1 = routinesList, block = {composableScope.launch { routinesList = viewModel.getRoutines() }})
 
-
-        ScaffoldExample(navController, routinesList)
+    RoutineList(navController, routinesList)
 }
 
-
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScaffoldExample(navController: NavHostController, routinesList : List<Routine>?) {
+fun RoutineList(navController: NavHostController, routinesList : List<Routine>?) {
     var presses by remember { mutableIntStateOf(0) }
     val list: List<Int> = listOf(1, 2, 3, 4, 5, 6, 7, 8)
 
     val state = rememberScrollState()
 
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(id = R.string.gymhelp),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-
-                },
-                navigationIcon = {
-                    IconButton(onClick = { /* Open Side Menu */ }) {
-                        Icon(
-                            imageVector = Icons.Filled.Menu,
-                            contentDescription = stringResource(id = R.string.local_desc)
-                        )
-                    }
-
-                },
-                actions = {
-                    IconButton(onClick = { /* goto_profile */ }) {
-                        Icon(
-                            imageVector = Icons.Filled.Person,
-                            contentDescription = stringResource(id = R.string.local_desc)
-                        )
-                    }
-                },
-
-                )
-        },
-        bottomBar = {
-            BottomAppBar(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.primary,
-            ) {
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    text = "Bottom app bar",
-                )
-            }
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = { presses++ }) {
-                Icon(Icons.Default.Add, contentDescription = "Add")
-            }
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxWidth()
-                .verticalScroll(state),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = stringResource(id = R.string.your_routines),
+    Column(
+        modifier = Modifier.fillMaxWidth().verticalScroll(state),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Text(
+            modifier = Modifier.padding(8.dp),
+            text = stringResource(id = R.string.your_routines),
             )
             if (routinesList != null) {
                 for (routine in routinesList) {
@@ -175,39 +118,94 @@ fun ScaffoldExample(navController: NavHostController, routinesList : List<Routin
                 }
             } else {
                 Text(text = stringResource(id = R.string.no_routines))
-                /*OutlinedCard(
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surface
-                    ),
-                    border = BorderStroke(1.dp, Color.Black),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp)
-                ) {
-                    Row() {
-                        Spacer(modifier = Modifier)
-                        Text(
-                            text = "Nombre",
-                            modifier = Modifier
-                                .padding(16.dp),
-                            textAlign = TextAlign.Center,
-                        )
 
-                        Spacer(Modifier.weight(1f))
-                        IconButton(onClick = { /*Hi*/ }) {
-                            Icon(
-                                Icons.Outlined.PlayArrow,
-                                contentDescription = "Play Routine",
-                                Modifier.fillMaxSize()
-                            )
-                        }
-                    }
-                    NO DESCOMENTAR HASTA QUE ME ARREGLEN LA API
-
-                }*/
             }
         }
 
 
     }
+
+
+
+/* Scaffold(
+topBar = {
+    CenterAlignedTopAppBar(
+        title = {
+            Text(
+                text = stringResource(id = R.string.gymhelp),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+
+        },
+        navigationIcon = {
+            IconButton(onClick = { /* Open Side Menu */ }) {
+                Icon(
+                    imageVector = Icons.Filled.Menu,
+                    contentDescription = stringResource(id = R.string.local_desc)
+                )
+            }
+
+        },
+        actions = {
+            IconButton(onClick = { /* goto_profile */ }) {
+                Icon(
+                    imageVector = Icons.Filled.Person,
+                    contentDescription = stringResource(id = R.string.local_desc)
+                )
+            }
+        },
+
+        )
+},
+bottomBar = {
+    BottomAppBar(
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
+        contentColor = MaterialTheme.colorScheme.primary,
+    ) {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            text = "Bottom app bar",
+        )
+    }
+},
+floatingActionButton = {
+    FloatingActionButton(onClick = { presses++ }) {
+        Icon(Icons.Default.Add, contentDescription = "Add")
+    }
 }
+) { innerPadding ->*/
+
+
+/*OutlinedCard(
+    colors = CardDefaults.cardColors(
+        containerColor = MaterialTheme.colorScheme.surface
+    ),
+    border = BorderStroke(1.dp, Color.Black),
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(100.dp)
+) {
+    Row() {
+        Spacer(modifier = Modifier)
+        Text(
+            text = "Nombre",
+            modifier = Modifier
+                .padding(16.dp),
+            textAlign = TextAlign.Center,
+        )
+
+        Spacer(Modifier.weight(1f))
+        IconButton(onClick = { /*Hi*/ }) {
+            Icon(
+                Icons.Outlined.PlayArrow,
+                contentDescription = "Play Routine",
+                Modifier.fillMaxSize()
+            )
+        }
+    }
+    NO DESCOMENTAR HASTA QUE ME ARREGLEN LA API
+
+}*/

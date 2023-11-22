@@ -43,6 +43,7 @@ color androidx_core_secondary_text_default_material_light
 color black
 color call_notification_answer_color
 color call_notification_decline_color
+color ic_launcher_background
 color notification_action_color_filter
 color notification_icon_bg_color
 color purple_200
@@ -196,11 +197,13 @@ layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string OKButton
 string add_sport
 string androidx_startup
 string app_name
+string backButton
 string call_notification_answer_action
 string call_notification_answer_video_action
 string call_notification_decline_action
@@ -218,10 +221,12 @@ string dialog
 string dropdown_menu
 string duration
 string expanded
+string favs
 string get_all_sports
 string get_current_sport
 string get_current_user
 string gymhelp
+string home
 string in_progress
 string indeterminate
 string local_desc
@@ -241,7 +246,9 @@ string range_start
 string redirecting
 string repetitions
 string retry
+string search
 string selected
+string settings
 string status_bar_notification_info_overflow
 string switch_role
 string tab

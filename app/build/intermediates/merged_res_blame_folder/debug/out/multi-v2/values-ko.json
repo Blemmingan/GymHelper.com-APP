@@ -4,7 +4,24 @@
             "outputFile": "ar.edu.itba.example.api.app-mergeDebugResources-48:/values-ko/values-ko.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\ee64e97561dea54bff65e93822e94c1c\\transformed\\ui-release\\res\\values-ko\\values-ko.xml",
+                    "source": "/home/cnt/.gradle/caches/transforms-3/e060ddb424a06ecfb8e75da3d70f4c48/transformed/core-1.12.0/res/values-ko/values-ko.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,147,247,341,438,534,632,732",
+                        "endColumns": "91,99,93,96,95,97,99,100",
+                        "endOffsets": "142,242,336,433,529,627,727,828"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,26",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,197,297,391,488,584,682,2063",
+                        "endColumns": "91,99,93,96,95,97,99,100",
+                        "endOffsets": "192,292,386,483,579,677,777,2159"
+                    }
+                },
+                {
+                    "source": "/home/cnt/.gradle/caches/transforms-3/ee64e97561dea54bff65e93822e94c1c/transformed/ui-release/res/values-ko/values-ko.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\95307028250a3d1c2707ec3c5d80d07c\\transformed\\material3-1.0.0\\res\\values-ko\\values-ko.xml",
+                    "source": "/home/cnt/.gradle/caches/transforms-3/95307028250a3d1c2707ec3c5d80d07c/transformed/material3-1.0.0/res/values-ko/values-ko.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -35,23 +52,6 @@
                         "startOffsets": "937,1186,1336",
                         "endColumns": "70,69,69",
                         "endOffsets": "1003,1251,1401"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\e060ddb424a06ecfb8e75da3d70f4c48\\transformed\\core-1.12.0\\res\\values-ko\\values-ko.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,147,247,341,438,534,632,732",
-                        "endColumns": "91,99,93,96,95,97,99,100",
-                        "endOffsets": "142,242,336,433,529,627,727,828"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,26",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,197,297,391,488,584,682,2063",
-                        "endColumns": "91,99,93,96,95,97,99,100",
-                        "endOffsets": "192,292,386,483,579,677,777,2159"
                     }
                 }
             ]

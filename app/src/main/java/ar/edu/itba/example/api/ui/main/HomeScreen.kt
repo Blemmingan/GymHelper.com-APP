@@ -20,6 +20,8 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.outlined.PlayArrow
+import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -77,7 +79,9 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
     val state = rememberScrollState()
 
     Column(
-        modifier = Modifier.fillMaxWidth().verticalScroll(state),
+        modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(state),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
@@ -95,7 +99,7 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                             .fillMaxWidth()
                             .height(100.dp),
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
                             routine.name?.let {
                                 Text(
                                     text = it,
@@ -112,6 +116,20 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                                     Modifier.fillMaxSize()
                                 )
                             }
+                            Column {
+                                IconButton(onClick = { /**/ }) {
+                                    Icon(
+                                        Icons.Outlined.Share,
+                                        contentDescription = "Share Routine",
+                                    )
+                                }
+                                IconButton(onClick = { /*TODO*/ }) {
+                                    Icon(
+                                        Icons.Outlined.Star,
+                                        contentDescription = "favourite",
+                                    )
+                                }
+                            }
                         }
 
                     }
@@ -120,6 +138,50 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                 Text(text = stringResource(id = R.string.no_routines))
 
             }
+        ///////////////////////////
+        OutlinedCard(
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            ),
+            border = BorderStroke(1.dp, Color.Black),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp),
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+
+                    Text(
+                        text = "1",
+                        modifier = Modifier
+                            .padding(16.dp),
+                        textAlign = TextAlign.Center,
+                    )
+
+                Spacer(Modifier.weight(1f))
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        Icons.Outlined.PlayArrow,
+                        contentDescription = "Play",
+                    )
+                }
+                Column {
+                    IconButton(onClick = { /**/ }) {
+                        Icon(
+                            Icons.Outlined.Share,
+                            contentDescription = "Share Routine",
+                        )
+                    }
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            Icons.Outlined.Star,
+                            contentDescription = "favourite",
+                        )
+                    }
+
+                }
+            }
+
+        }
         }
 
 

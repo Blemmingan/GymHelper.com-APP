@@ -214,6 +214,7 @@ string call_notification_screening_text
 string close_drawer
 string close_sheet
 string collapsed
+string current_exercise
 string default_error_message
 string default_popup_window_title
 string delete_sport
@@ -236,6 +237,8 @@ string login_success
 string logout
 string modify_sport
 string navigation_menu
+string next_exercise
+string next_exercises
 string noExercises
 string no_routines
 string not_selected
@@ -253,6 +256,8 @@ string status_bar_notification_info_overflow
 string switch_role
 string tab
 string template_percent
+string view_all_exercises
+string view_detailed_exercise
 string your_routines
 style DialogWindowTheme
 style FloatingDialogTheme

@@ -4,24 +4,7 @@
             "outputFile": "ar.edu.itba.example.api.app-mergeDebugResources-48:/values-eu/values-eu.xml",
             "map": [
                 {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/e060ddb424a06ecfb8e75da3d70f4c48/transformed/core-1.12.0/res/values-eu/values-eu.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,256,356,459,564,667,786",
-                        "endColumns": "97,102,99,102,104,102,118,100",
-                        "endOffsets": "148,251,351,454,559,662,781,882"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,26",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,203,306,406,509,614,717,2267",
-                        "endColumns": "97,102,99,102,104,102,118,100",
-                        "endOffsets": "198,301,401,504,609,712,831,2363"
-                    }
-                },
-                {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/ee64e97561dea54bff65e93822e94c1c/transformed/ui-release/res/values-eu/values-eu.xml",
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\ee64e97561dea54bff65e93822e94c1c\\transformed\\ui-release\\res\\values-eu\\values-eu.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/cnt/.gradle/caches/transforms-3/95307028250a3d1c2707ec3c5d80d07c/transformed/material3-1.0.0/res/values-eu/values-eu.xml",
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\95307028250a3d1c2707ec3c5d80d07c\\transformed\\material3-1.0.0\\res\\values-eu\\values-eu.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -52,6 +35,23 @@
                         "startOffsets": "1008,1291,1455",
                         "endColumns": "77,71,76",
                         "endOffsets": "1081,1358,1527"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\joaqu\\.gradle\\caches\\transforms-3\\e060ddb424a06ecfb8e75da3d70f4c48\\transformed\\core-1.12.0\\res\\values-eu\\values-eu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,256,356,459,564,667,786",
+                        "endColumns": "97,102,99,102,104,102,118,100",
+                        "endOffsets": "148,251,351,454,559,662,781,882"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,26",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,203,306,406,509,614,717,2267",
+                        "endColumns": "97,102,99,102,104,102,118,100",
+                        "endOffsets": "198,301,401,504,609,712,831,2363"
                     }
                 }
             ]

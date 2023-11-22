@@ -12,6 +12,7 @@
     <string name="add_sport">ADD SPORT</string>
     <string name="app_name">GymHelper</string>
     <string name="backButton">Back</string>
+    <string name="current_exercise">Current Exercise</string>
     <string name="delete_sport">DELETE SPORT</string>
     <string name="duration">Duration: %1$d</string>
     <string name="favs">Favourites</string>
@@ -26,6 +27,8 @@
     <string name="login_success">Login Successful</string>
     <string name="logout">LOGOUT</string>
     <string name="modify_sport">MODIFY SPORT</string>
+    <string name="next_exercise">Next Exercise</string>
+    <string name="next_exercises">Next Exercises</string>
     <string name="noExercises">This cycle has no exercises</string>
     <string name="no_routines">You have no routines.</string>
     <string name="redirecting">Redirecting…</string>
@@ -33,6 +36,8 @@
     <string name="retry">Please try again.</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
+    <string name="view_all_exercises">View Next Exercises</string>
+    <string name="view_detailed_exercise">View Exercise Detail</string>
     <string name="your_routines">Your Routines</string>
     <style name="Theme.Api" parent="android:Theme.Material.Light.NoActionBar"/>
 </resources>

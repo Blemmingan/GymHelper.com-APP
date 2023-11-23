@@ -102,5 +102,10 @@ class MainViewModel(
         }
         return newList
     }
+
+    fun getFavourites() = runOnViewModelScope(
+        {routineRepository.getFavourites()},
+        {state, response -> state.copy(favouriteRoutines = response)}
+    )
 }
 

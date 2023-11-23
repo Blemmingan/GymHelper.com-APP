@@ -35,11 +35,5 @@ fun MyBottomBar(
             onClick = {onNavigate("favs")},
             selected = currentRoute == "favs"
         )
-        NavigationBarItem (
-            icon = {Icon(Icons.Filled.Search, contentDescription = stringResource(id = R.string.search))},
-            label = {Text(stringResource(id = R.string.search))},
-            onClick = {onNavigate("search")},
-            selected = currentRoute == "search"
-        )
     }
 }

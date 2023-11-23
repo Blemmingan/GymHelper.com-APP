@@ -24,7 +24,9 @@ data class MainUiState(
     val error: Error? = null,
 
     val currentRoutine: Routine? = null,
-    val currentRoutineDetails: List<CycleWithExercises> = listOf()
+    val currentRoutineDetails: List<CycleWithExercises> = listOf(),
+
+    val favouriteRoutines: List<Routine> = listOf()
 )
 
 val MainUiState.canGetCurrentUser: Boolean get() = isAuthenticated

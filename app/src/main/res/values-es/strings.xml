@@ -21,7 +21,8 @@
     <string name="repetitions">Repeticiones: %1$d</string>
     <string name="noExercises">El ciclo no tiene ejercicios</string>
     <string name="duration">Duración: %1$d</string>
-    <string name="no_routines">No tienes ninguna rutina.</string>
+    <string name="no_routines">No se han encontrado rutinas</string>
+    <string name="no_fav_routines">No tienes ninguna rutina marcada como favorita</string>
 
     <string name="backButton">Volver</string>
     <string name="settings">Configuración</string>

@@ -15,7 +15,9 @@ import retrofit2.http.Query
 interface ApiRoutineService {
     @GET("routines")
     suspend fun getRoutines(
-        @Query("size") size: Int = 50
+        @Query("page") page: Int = 0,
+        @Query("size") size: Int = 50,
+        @Query("orderBy") orderBy: String = "date",
     ): Response<NetworkPagedContent<NetworkRoutine>>
 
     @POST("routines")

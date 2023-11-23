@@ -84,9 +84,15 @@ class MainViewModel(
         {state, response -> state.copy(currentRoutine = response)}
     )
 
-    suspend fun getRoutines(): List<Routine> {
-        return routineRepository.getRoutines(false)
-    }
+    fun getRoutines(
+        page: Int = 0,
+        size: Int = 50,
+        orderBy: String = "date"
+    ) = runOnViewModelScope(
+        {routineRepository.getRoutines(false, page, size, orderBy)},
+        {state, response -> state.copy(currentUserRoutines = response)}
+    )
+
 
     fun getCycles(routineId: Int) = runOnViewModelScope(
         {getCyclesAux(routineId) },
@@ -107,5 +113,21 @@ class MainViewModel(
         {routineRepository.getFavourites()},
         {state, response -> state.copy(favouriteRoutines = response)}
     )
+
+    fun changeFavourite(routineId: Int) = runOnViewModelScope(
+        {changeFavouriteAux(routineId)},
+        {state, response -> state.copy(currentIsFavourite = response)}
+    )
+
+    suspend fun changeFavouriteAux(routineId: Int): Boolean{
+        val favs = routineRepository.getFavourites()
+        if (favs.any {it.id == routineId}){
+            routineRepository.removeFavourite(routineId)
+            return false
+        } else {
+            routineRepository.setFavourite(routineId)
+            return true
+        }
+    }
 }
 

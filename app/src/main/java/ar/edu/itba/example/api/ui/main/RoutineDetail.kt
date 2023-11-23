@@ -158,22 +158,6 @@ fun RoutineDetail(
                 .padding(bottom = 10.dp)
         ) {
 
-            /* val favIcon = if (viewModel.uiState.currentIsFavourite){
-                Icons.Filled.Favorite
-            } else {
-                Icons.Outlined.Favorite
-            }
-
-            IconButton(onClick = {
-                setFavourite(routineId)
-            }
-            ){
-                Icon(
-                    imageVector = favIcon,
-                    contentDescription = "favourite",
-                )
-            }
-*/
             IconButton(onClick = {
                 navController.navigate("routine/execution/$routineId")
             }

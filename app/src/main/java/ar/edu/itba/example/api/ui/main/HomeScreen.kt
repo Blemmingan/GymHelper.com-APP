@@ -50,7 +50,7 @@ fun HomeScreen(navController: NavHostController,
 ){
 
     var orderBy by remember { mutableStateOf("date") }
-    viewModel.getCurrentUserRoutines(orderBy = orderBy)
+    viewModel.getRoutines(orderBy = orderBy)
 
 
     Column {
@@ -160,6 +160,4 @@ fun RoutineList(navController: NavHostController,uiState: MainUiState){
         }
     }
 
-fun Text(text: String, modifier: Modifier, textAlign: TextAlign, tex: Any) {
 
-}

@@ -13,9 +13,14 @@ class RoutineRepository (
     private val routinesMutex = Mutex()
     private var routines: List<Routine> = emptyList()
 
-    suspend fun getRoutines(refresh: Boolean = false): List<Routine> {
+    suspend fun getRoutines(
+        refresh: Boolean = false,
+        page: Int = 0,
+        size: Int = 50,
+        orderBy: String = "date"
+    ): List<Routine> {
         if (refresh || routines.isEmpty()){
-            val result = remoteDataSource.getRoutines()
+            val result = remoteDataSource.getRoutines(page, size, orderBy)
             routinesMutex.withLock {
                 this.routines = result.content.map { it.asModel() }
             }
@@ -62,4 +67,13 @@ class RoutineRepository (
     suspend fun getFavourites(): List<Routine>{
         return remoteDataSource.getFavourites().content.map { it.asModel() }
     }
+
+    suspend fun setFavourite(routineId: Int){
+        remoteDataSource.setFavourite(routineId)
+    }
+
+    suspend fun removeFavourite(routineId: Int){
+        remoteDataSource.removeFavourite(routineId)
+    }
+
 }

@@ -21,9 +21,13 @@ class RoutineRemoteDataSource(
     private val apiCategoryService: ApiCategoryService
 ) : RemoteDataSource() {
 
-    suspend fun getRoutines(): NetworkPagedContent<NetworkRoutine> {
+    suspend fun getRoutines(
+        page: Int = 0,
+        size: Int = 50,
+        orderBy: String = "date"
+    ): NetworkPagedContent<NetworkRoutine> {
         return handleApiResponse {
-            apiRoutineService.getRoutines()
+            apiRoutineService.getRoutines(page, size, orderBy)
         }
     }
 
@@ -54,6 +58,18 @@ class RoutineRemoteDataSource(
     suspend fun getFavourites(): NetworkPagedContent<NetworkRoutine>{
         return handleApiResponse {
             apiRoutineService.getFavourites()
+        }
+    }
+
+    suspend fun setFavourite(routineId: Int){
+        handleApiResponse {
+            apiRoutineService.addFavourite(routineId)
+        }
+    }
+
+    suspend fun removeFavourite(routineId: Int){
+        handleApiResponse {
+            apiRoutineService.deleteFavourite(routineId)
         }
     }
 

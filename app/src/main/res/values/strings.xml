@@ -20,7 +20,8 @@
     <string name="repetitions">Repetitions: %1$d</string>
     <string name="noExercises">This cycle has no exercises</string>
     <string name="duration">Duration: %1$d</string>
-    <string name="no_routines">You have no routines.</string>
+    <string name="no_routines">No routines found</string>
+    <string name="no_fav_routines">You don\'t have any favourite routines</string>
 
     <string name="backButton">Back</string>
     <string name="settings">Settings</string>

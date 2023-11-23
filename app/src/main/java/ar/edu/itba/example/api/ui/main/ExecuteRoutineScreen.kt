@@ -13,6 +13,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.OutlinedCard
@@ -102,6 +106,7 @@ fun ExecuteMainScreen(
     cyclesWithExercise: List<CycleWithExercises>
 ){
     var exerciseDetail by remember { mutableStateOf(true) }
+    var isPaused by remember { mutableStateOf(true) }
     var cycleIndex by remember { mutableIntStateOf(0) }
     var exerciseIndex by remember { mutableIntStateOf(0) }
     Column(
@@ -129,34 +134,49 @@ fun ExecuteMainScreen(
                 )
             }
             Spacer(Modifier.weight(0.20f, true))
-            cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.detail?.let {
+            if(cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.detail != cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.name) {
+                cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.detail?.let {
+                    Text(
+                        text = it,
+                        fontSize = 25.sp,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
+            }
+            Spacer(Modifier.weight(0.3f, true))
+            if(cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.repetitions != 0) {
                 Text(
-                    text = it,
-                    fontSize = 25.sp,
+                    text = stringResource(R.string.repetitions,
+                        cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.repetitions
+                            ?: 0
+                    ),
+                    fontSize = 30.sp,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
-            Spacer(Modifier.weight(0.3f, true))
-            Text(
-                text = cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.repetitions.toString(),
-                fontSize = 30.sp,
-                color = MaterialTheme.colorScheme.onPrimary
-            )
             Spacer(Modifier.weight(0.1f, true))
             Text(
-                text = cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.duration.toString(),
+                text = cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.duration.toString() + "s",
                 fontSize = 30.sp,
                 color = MaterialTheme.colorScheme.onPrimary
             )
             Spacer(Modifier.weight(0.4f, true))
             IconButton(
-                onClick = { /*Pause timer*/ },
+                onClick = { isPaused = !isPaused },
                 ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.baseline_pause_24),
-                    contentDescription = null,
-                    modifier = Modifier.size(100.dp)
-                )
+                if(isPaused){
+                    Icon(
+                        imageVector = Icons.Filled.PlayArrow,
+                        contentDescription = null,
+                        modifier = Modifier.size(100.dp)
+                    )
+                } else {
+                    Icon(
+                        painter = painterResource(id = R.drawable.baseline_pause_24),
+                        contentDescription = null,
+                        modifier = Modifier.size(100.dp)
+                    )
+                }
             }
         } else{
             Spacer(Modifier.weight(0.10f, true))
@@ -195,9 +215,16 @@ fun ExecuteMainScreen(
             Spacer(Modifier.weight(0.1f, true))
 
             var i = exerciseIndex + 1
-            var j = cycleIndex + 1
+            var j = cycleIndex
+            var total = 0
+            if(i >= cyclesWithExercise[cycleIndex].exercises?.size!!){
+                j++
+                i = 0
+            }
 
-            while (j < cyclesWithExercise.size && i < cyclesWithExercise[cycleIndex].exercises?.size!!){
+
+
+            while (j < cyclesWithExercise.size && total < 3){
                 OutlinedCard(
                         colors = CardDefaults.cardColors(
                             containerColor = MaterialTheme.colorScheme.surface
@@ -218,22 +245,28 @@ fun ExecuteMainScreen(
                         )
                     }
                 }
-                i++
-                j++
+                if(i + 1 < cyclesWithExercise[j].exercises?.size!!){
+                    i++
+                } else {
+                    j++
+                    i = 0
+                }
+                total++
             }
 
         }
+
+
+
         Spacer(Modifier.weight(1f, true))
-
-
-        if(cycleIndex + 1 < cyclesWithExercise.size && exerciseIndex + 1 < cyclesWithExercise[cycleIndex].exercises?.size!!) {
+        if(cycleIndex + 1 < cyclesWithExercise.size || exerciseIndex + 1 < cyclesWithExercise[cycleIndex].exercises?.size!!) {
             Button(
                 onClick = {
                     if(exerciseIndex + 1 < cyclesWithExercise[cycleIndex].exercises?.size!!){
+                        exerciseIndex++
+                    } else {
                         cycleIndex++
                         exerciseIndex = 0
-                    } else {
-                        exerciseIndex++
                     }
                 },
                 modifier = Modifier.size(300.dp, 100.dp),
@@ -246,7 +279,7 @@ fun ExecuteMainScreen(
             }
         }
 
-        Spacer(Modifier.weight(1f, true))
+        Spacer(Modifier.weight(0.1f, true))
         Button(
             onClick = { exerciseDetail = !exerciseDetail },
             modifier = Modifier.fillMaxWidth()
@@ -259,4 +292,3 @@ fun ExecuteMainScreen(
         }
     }
 }
-

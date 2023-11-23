@@ -68,4 +68,6 @@
     <string name="timer_finished">Exercise Finished!</string>
 
     <string name="unspecified">Unspecified</string>
+    <string name="routine">Routine</string>
+    <string name="execution">Routine Execution\n</string>
 </resources>

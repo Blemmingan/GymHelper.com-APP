@@ -30,7 +30,7 @@ import ar.edu.itba.example.api.ui.main.RoutineScreen
 @Composable
 fun MyNavHost(
     navController: NavHostController = rememberNavController(),
-    startDestination: String = "login"
+    startDestination: String = "home"
 ){
     val uri = "http://www.GymHelper.com"
     val secureUri = "https://www.GymHelper.com"
@@ -38,16 +38,21 @@ fun MyNavHost(
     var currentRoute by rememberSaveable {
         mutableStateOf("login")
     }
-
+    var title by rememberSaveable {
+        mutableStateOf("login")
+    }
+    var showBackButton by rememberSaveable {
+        mutableStateOf(false)
+    }
     var showTopBar by rememberSaveable { mutableStateOf(true) }
     var showBottomBar by rememberSaveable { mutableStateOf(true) }
 
     Scaffold(
         topBar = { if (showTopBar) {MyTopBar(
-            title = stringResource(id = R.string.gymhelp),
-            showBackButton = true,
-            onGoBack = {navController.popBackStack()},
-            onGoSettings = {/*navController.navigate("settings")*/},
+            title = title,
+            showBackButton = showBackButton,
+            onGoBack = {navController.navigateUp()},
+            onGoSettings = {navController.navigate("settings")},
         )}},
         bottomBar = { if (showBottomBar) {MyBottomBar(
             currentRoute = currentRoute,
@@ -61,15 +66,17 @@ fun MyNavHost(
             modifier = Modifier.padding(it)
         ){
             composable("login"){
+                title = stringResource(id = R.string.login)
                 showTopBar= false
                 showBottomBar = false
                 currentRoute = "login"
                 LoginScreen(navController)
             }
             composable("home"){
-
-                route -> showTopBar = true
+                route -> title = stringResource(id = R.string.home)
+                showTopBar = true
                 showBottomBar = true
+                showBackButton = false
                 currentRoute = "home"
                 HomeScreen(navController = navController)
             }
@@ -79,8 +86,10 @@ fun MyNavHost(
                 arguments = listOf(navArgument("id") {type = NavType.IntType}),
                 deepLinks = listOf(navDeepLink{uriPattern = "$uri/routine/{id}"}, navDeepLink {uriPattern = "$secureUri/routine/{id}"})
             ) {
-                    route -> showTopBar = true
+                    route -> title = stringResource(id = R.string.routine)
+                        showTopBar = true
                         showBottomBar = false
+                        showBackButton = true
                         currentRoute = "routine"
                         RoutineScreen(
                         routineId = route.arguments?.getInt("id")!!,
@@ -92,8 +101,10 @@ fun MyNavHost(
                 "routine/execution/{id}",
                 arguments = listOf(navArgument("id") {type = NavType.IntType}),
             ) {
-                    route -> showTopBar = false
+                    route -> title = stringResource(id = R.string.execution)
+                    showTopBar = false
                     showBottomBar = false
+                    showBackButton = true
                 currentRoute = "routine/execution"
                         ExecuteRoutineScreen(
                             routineId = route.arguments?.getInt("id")!!,
@@ -104,9 +115,11 @@ fun MyNavHost(
             composable(
                 "favs"
             ) {
+                title = stringResource(id = R.string.favs)
                 currentRoute = "favs"
                 showTopBar = true
-                showBottomBar = false
+                showBottomBar = true
+                showBackButton = false
                 FavourtiteRoutines(navController = navController)
             }
         }

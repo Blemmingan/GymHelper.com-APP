@@ -70,5 +70,7 @@
     <string name="timer_finished">¡Ejercicio Completo!</string>
 
     <string name="unspecified">No especificado</string>
+    <string name="routine">Rutina</string>
+    <string name="execution">Ejecución de Rutina</string>
 
 </resources>

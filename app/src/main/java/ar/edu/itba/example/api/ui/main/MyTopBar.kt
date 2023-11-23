@@ -10,8 +10,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import ar.edu.itba.example.api.R
 
@@ -21,21 +23,23 @@ fun MyTopBar(
     title: String? = null,
     onGoBack: () -> Unit,
     onGoSettings: () -> Unit,
-    showBackButton: Boolean
+    showBackButton: Boolean = true
 ) {
     CenterAlignedTopAppBar(
         title = {if (title!=null) Text(title) },
         modifier = Modifier.background(MaterialTheme.colorScheme.primary),
-        navigationIcon = {
-            IconButton(onClick = onGoBack){
+        navigationIcon = { if (showBackButton) {
+            IconButton(onClick = onGoBack) {
                 Icon(Icons.Filled.ArrowBack, stringResource(id = R.string.backButton))
             }
+        }
         },
         actions = {
             IconButton(onClick = onGoSettings){
                 Icon(Icons.Filled.Settings, stringResource(id = R.string.settings))
             }
-        }
+        },
+        colors = TopAppBarDefaults.smallTopAppBarColors(titleContentColor = Color.White, containerColor =  MaterialTheme.colorScheme.primary)
 
     )
 }

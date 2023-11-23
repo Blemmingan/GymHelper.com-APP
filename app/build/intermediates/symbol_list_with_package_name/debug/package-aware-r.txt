@@ -231,6 +231,7 @@ string duration
 string empty_cycle_list
 string end_routine
 string error
+string execution
 string expanded
 string expert
 string favs
@@ -253,6 +254,7 @@ string next_exercise
 string next_exercises
 string noCycles
 string noExercises
+string no_fav_routines
 string no_routines
 string not_selected
 string off
@@ -269,6 +271,7 @@ string redirecting
 string repetitions
 string retry
 string rookie
+string routine
 string routineName
 string routine_fail
 string search

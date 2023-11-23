@@ -25,6 +25,7 @@
     <string name="empty_cycle_list">Empty Cycle List</string>
     <string name="end_routine">End Routine</string>
     <string name="error">ERROR</string>
+    <string name="execution">Routine Execution\n</string>
     <string name="expert">Expert</string>
     <string name="favs">Favourites</string>
     <string name="get_all_sports">GET ALL SPORTS</string>
@@ -40,10 +41,11 @@
     <string name="logout">LOGOUT</string>
     <string name="modify_sport">MODIFY SPORT</string>
     <string name="next_exercise">Next Exercise</string>
-    <string name="next_exercises">Next Exercises</string>
+    <string name="next_exercises">Next Up</string>
     <string name="noCycles">This routine has no cycles</string>
     <string name="noExercises">This cycle has no exercises</string>
-    <string name="no_routines">You have no routines.</string>
+    <string name="no_fav_routines">You don\'t have any favourite routines</string>
+    <string name="no_routines">No routines found</string>
     <string name="orderBy">Order by</string>
     <string name="orderByCategory">Category</string>
     <string name="orderByDate">Date</string>
@@ -54,6 +56,7 @@
     <string name="repetitions">Repetitions: %1$d</string>
     <string name="retry">Please try again.</string>
     <string name="rookie">Rookie</string>
+    <string name="routine">Routine</string>
     <string name="routineName">Routine</string>
     <string name="routine_fail">This routine does not exist</string>
     <string name="search">Search</string>

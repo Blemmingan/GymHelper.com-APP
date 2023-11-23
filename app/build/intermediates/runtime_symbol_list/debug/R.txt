@@ -230,6 +230,7 @@ int string duration 0x7f09001c
 int string empty_cycle_list 0x7f09001d
 int string end_routine 0x7f09001e
 int string error 0x7f09001f
+int string execution 0x7f090058
 int string expanded 0x7f090020
 int string expert 0x7f090021
 int string favs 0x7f090022
@@ -252,6 +253,7 @@ int string next_exercise 0x7f090032
 int string next_exercises 0x7f090033
 int string noCycles 0x7f090034
 int string noExercises 0x7f090035
+int string no_fav_routines 0x7f090057
 int string no_routines 0x7f090036
 int string not_selected 0x7f090037
 int string off 0x7f090038
@@ -268,6 +270,7 @@ int string redirecting 0x7f090042
 int string repetitions 0x7f090043
 int string retry 0x7f090044
 int string rookie 0x7f090045
+int string routine 0x7f090059
 int string routineName 0x7f090046
 int string routine_fail 0x7f090047
 int string search 0x7f090048

@@ -63,4 +63,6 @@
     <string name="share">Share</string>
 
     <string name="noCycles">This routine has no cycles</string>
+    <string name="end_routine">End Routine</string>
+    <string name="timer_finished">Exercise Finished!</string>
 </resources>

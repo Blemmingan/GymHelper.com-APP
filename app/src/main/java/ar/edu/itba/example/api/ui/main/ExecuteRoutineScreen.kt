@@ -13,9 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -28,7 +25,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,10 +33,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.OutlinedCard
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -48,6 +47,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import ar.edu.itba.example.api.R
 import ar.edu.itba.example.api.util.getViewModelFactory
+import kotlinx.coroutines.delay
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,7 +65,8 @@ fun ExecuteRoutineScreen(
         ) { padding ->
             ExecuteMainScreen(
                 modifier = Modifier.padding(padding),
-                cyclesWithExercise = viewModel.uiState.currentRoutineDetails
+                cyclesWithExercise = viewModel.uiState.currentRoutineDetails,
+                navController = navController
             )
         }
     }
@@ -103,12 +104,24 @@ fun ExecuteTopBar(
 @Composable
 fun ExecuteMainScreen(
     modifier: Modifier = Modifier,
-    cyclesWithExercise: List<CycleWithExercises>
+    cyclesWithExercise: List<CycleWithExercises>,
+    navController: NavHostController,
 ){
-    var exerciseDetail by remember { mutableStateOf(true) }
-    var isPaused by remember { mutableStateOf(true) }
-    var cycleIndex by remember { mutableIntStateOf(0) }
-    var exerciseIndex by remember { mutableIntStateOf(0) }
+    var exerciseDetail by rememberSaveable { mutableStateOf(true) }
+    var cycleIndex by rememberSaveable { mutableIntStateOf(0) }
+    var exerciseIndex by rememberSaveable { mutableIntStateOf(0) }
+    val hasTimer = (cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.duration != 0)
+    var isPaused by rememberSaveable { mutableStateOf(true) }
+    var timeLeft by rememberSaveable { mutableStateOf(cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.duration) }
+
+    LaunchedEffect(key1 = timeLeft, key2 = isPaused) {
+        while (timeLeft!! > 0 && !isPaused) {
+            delay(1000L)
+            timeLeft = timeLeft!! - 1
+        }
+    }
+
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
@@ -117,6 +130,7 @@ fun ExecuteMainScreen(
             .fillMaxSize()
     ){
         Spacer(Modifier.weight(0.15f, true))
+
         cyclesWithExercise[cycleIndex].cycle?.name?.let {
             Text(
                 text = it,
@@ -126,6 +140,7 @@ fun ExecuteMainScreen(
         }
         if(exerciseDetail){
             Spacer(Modifier.weight(0.20f, true))
+
             cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.name?.let {
                 Text(
                     text = it,
@@ -133,17 +148,22 @@ fun ExecuteMainScreen(
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
+
             Spacer(Modifier.weight(0.20f, true))
+
             if(cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.detail != cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.name) {
                 cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.exercise?.detail?.let {
                     Text(
                         text = it,
                         fontSize = 25.sp,
-                        color = MaterialTheme.colorScheme.onPrimary
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        textAlign = TextAlign.Center
                     )
                 }
             }
+
             Spacer(Modifier.weight(0.3f, true))
+
             if(cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.repetitions != 0) {
                 Text(
                     text = stringResource(R.string.repetitions,
@@ -154,31 +174,36 @@ fun ExecuteMainScreen(
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
+
             Spacer(Modifier.weight(0.1f, true))
-            Text(
-                text = cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.duration.toString() + "s",
-                fontSize = 30.sp,
-                color = MaterialTheme.colorScheme.onPrimary
-            )
-            Spacer(Modifier.weight(0.4f, true))
-            IconButton(
-                onClick = { isPaused = !isPaused },
+            if(hasTimer) {
+                Text(
+                    text = if(timeLeft != 0) "$timeLeft s" else stringResource(id = R.string.timer_finished),
+                    fontSize = 30.sp,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+
+                Spacer(Modifier.weight(0.4f, true))
+
+                IconButton(
+                    onClick = { isPaused = !isPaused },
                 ) {
-                if(isPaused){
-                    Icon(
-                        imageVector = Icons.Filled.PlayArrow,
-                        contentDescription = null,
-                        modifier = Modifier.size(100.dp)
-                    )
-                } else {
-                    Icon(
-                        painter = painterResource(id = R.drawable.baseline_pause_24),
-                        contentDescription = null,
-                        modifier = Modifier.size(100.dp)
-                    )
+                    if (isPaused) {
+                        Icon(
+                            imageVector = Icons.Filled.PlayArrow,
+                            contentDescription = null,
+                            modifier = Modifier.size(1000.dp)
+                        )
+                    } else {
+                        Icon(
+                            painter = painterResource(id = R.drawable.baseline_pause_24),
+                            contentDescription = null,
+                            modifier = Modifier.size(1000.dp)
+                        )
+                    }
                 }
             }
-        } else{
+        } else {
             Spacer(Modifier.weight(0.10f, true))
             Text(
                 text = stringResource(id = R.string.current_exercise),
@@ -256,9 +281,8 @@ fun ExecuteMainScreen(
 
         }
 
-
-
         Spacer(Modifier.weight(1f, true))
+
         if(cycleIndex + 1 < cyclesWithExercise.size || exerciseIndex + 1 < cyclesWithExercise[cycleIndex].exercises?.size!!) {
             Button(
                 onClick = {
@@ -268,8 +292,10 @@ fun ExecuteMainScreen(
                         cycleIndex++
                         exerciseIndex = 0
                     }
+                    timeLeft = cyclesWithExercise[cycleIndex].exercises?.get(exerciseIndex)?.duration
+                    isPaused = true
                 },
-                modifier = Modifier.size(300.dp, 100.dp),
+                modifier = Modifier.size(250.dp, 100.dp),
             ) {
                 Text(
                     text = stringResource(id = R.string.next_exercise),
@@ -277,16 +303,31 @@ fun ExecuteMainScreen(
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
+        } else{
+            Button(
+                onClick = { navController.popBackStack() },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Red,
+                ),
+                modifier = Modifier.size(250.dp, 100.dp)
+            ){
+                Text(
+                    text = stringResource(id = R.string.end_routine),
+                    fontSize = 30.sp,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
         }
 
         Spacer(Modifier.weight(0.1f, true))
+
         Button(
             onClick = { exerciseDetail = !exerciseDetail },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 text = if(exerciseDetail) stringResource(id = R.string.view_all_exercises) else stringResource(id = R.string.view_detailed_exercise),
-                fontSize = 15.sp,
+                fontSize = 20.sp,
                 color = MaterialTheme.colorScheme.onPrimary
             )
         }

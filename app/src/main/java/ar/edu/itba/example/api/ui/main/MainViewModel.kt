@@ -80,9 +80,20 @@ class MainViewModel(
     }
 
     fun getRoutine(routineId: Int) = runOnViewModelScope(
-        {routineRepository.getRoutine(routineId)},
+        {getRoutineAux(routineId)},
         {state, response -> state.copy(currentRoutine = response)}
     )
+
+    suspend fun getRoutineAux(routineId: Int): Routine{
+        val routine = routineRepository.getRoutine(routineId)
+        val favs : List<Routine> = routineRepository.getFavourites()
+        if (favs.any {it.id == routineId}){
+            uiState = uiState.copy(currentIsFavourite = true)
+        } else {
+            uiState = uiState.copy(currentIsFavourite = false)
+        }
+        return routine
+    }
 
     fun getRoutines(
         page: Int = 0,
@@ -114,20 +125,14 @@ class MainViewModel(
         {state, response -> state.copy(favouriteRoutines = response)}
     )
 
-    fun changeFavourite(routineId: Int) = runOnViewModelScope(
-        {changeFavouriteAux(routineId)},
-        {state, response -> state.copy(currentIsFavourite = response)}
+    fun addFavourite(routineId: Int) = runOnViewModelScope(
+        {routineRepository.addFavourite(routineId)},
+        { state, _ -> state.copy(currentIsFavourite = true)}
     )
 
-    suspend fun changeFavouriteAux(routineId: Int): Boolean{
-        val favs = routineRepository.getFavourites()
-        if (favs.any {it.id == routineId}){
-            routineRepository.removeFavourite(routineId)
-            return false
-        } else {
-            routineRepository.setFavourite(routineId)
-            return true
-        }
-    }
+    fun removeFavourite(routineId: Int) = runOnViewModelScope(
+        {routineRepository.removeFavourite(routineId)},
+        { state, _ -> state.copy(currentIsFavourite = false)}
+    )
 }
 

@@ -68,8 +68,8 @@ class RoutineRepository (
         return remoteDataSource.getFavourites().content.map { it.asModel() }
     }
 
-    suspend fun setFavourite(routineId: Int){
-        remoteDataSource.setFavourite(routineId)
+    suspend fun addFavourite(routineId: Int){
+        remoteDataSource.addFavourite(routineId)
     }
 
     suspend fun removeFavourite(routineId: Int){

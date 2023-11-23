@@ -61,7 +61,7 @@ class RoutineRemoteDataSource(
         }
     }
 
-    suspend fun setFavourite(routineId: Int){
+    suspend fun addFavourite(routineId: Int){
         handleApiResponse {
             apiRoutineService.addFavourite(routineId)
         }

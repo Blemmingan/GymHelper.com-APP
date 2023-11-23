@@ -58,4 +58,8 @@ class RoutineRepository (
     suspend fun getCycleExercises(cycleId: Int): List<CycleExercise> {
         return remoteDataSource.getCycleExercises(cycleId).content.map {it.asModel()}
     }
+
+    suspend fun getFavourites(): List<Routine>{
+        return remoteDataSource.getFavourites().content.map { it.asModel() }
+    }
 }

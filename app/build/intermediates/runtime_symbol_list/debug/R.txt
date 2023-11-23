@@ -280,11 +280,11 @@ int string switch_role 0x7f09004e
 int string tab 0x7f09004f
 int string template_percent 0x7f090050
 int string timer_finished 0x7f090051
-int string unspecified 0x7f090056
-int string username 0x7f090052
-int string view_all_exercises 0x7f090053
-int string view_detailed_exercise 0x7f090054
-int string your_routines 0x7f090055
+int string unspecified 0x7f090052
+int string username 0x7f090053
+int string view_all_exercises 0x7f090054
+int string view_detailed_exercise 0x7f090055
+int string your_routines 0x7f090056
 int style DialogWindowTheme 0x7f0a0000
 int style FloatingDialogTheme 0x7f0a0001
 int style FloatingDialogWindowTheme 0x7f0a0002

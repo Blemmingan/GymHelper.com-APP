@@ -51,6 +51,12 @@ class RoutineRemoteDataSource(
         }
     }
 
+    suspend fun getFavourites(): NetworkPagedContent<NetworkRoutine>{
+        return handleApiResponse {
+            apiRoutineService.getFavourites()
+        }
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////
     suspend fun getCycles(routineId: Int): NetworkPagedContent<NetworkCycle> {
         return handleApiResponse {

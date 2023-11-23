@@ -2,6 +2,7 @@ package ar.edu.itba.example.api.ui.main
 
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,8 +13,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.CardDefaults
@@ -33,8 +36,11 @@ import androidx.navigation.NavHostController
 import ar.edu.itba.example.api.R
 import ar.edu.itba.example.api.util.getViewModelFactory
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import ar.edu.itba.example.api.data.model.Routine
 import kotlinx.coroutines.launch
 
@@ -42,18 +48,43 @@ import kotlinx.coroutines.launch
 fun HomeScreen(navController: NavHostController,
                viewModel: MainViewModel = viewModel(factory = getViewModelFactory())
 ){
-    viewModel.getCurrentUserRoutines()
-    var routinesList : List<Routine>? = viewModel.uiState.currentUserRoutines
-    val composableScope = rememberCoroutineScope()
-    LaunchedEffect(key1 = routinesList, block = {composableScope.launch { routinesList = viewModel.getRoutines() }})
 
-    RoutineList(navController, routinesList)
+    var orderBy by remember { mutableStateOf("date") }
+    viewModel.getCurrentUserRoutines(orderBy = orderBy)
+
+
+    Column {
+        val displayedOrderList = listOf(
+            stringResource(id = R.string.orderByDate),
+            stringResource(id = R.string.orderByScore),
+            stringResource(id = R.string.orderByDifficulty),
+            stringResource(id = R.string.orderByCategory)
+        )
+        val orderList = listOf("date", "score", "difficulty", "category")
+
+        MyDropDownMenu(
+            label = stringResource(id = R.string.orderBy),
+            elements = displayedOrderList,
+            selectedText = displayedOrderList.elementAtOrNull(orderList.indexOfFirst { it == orderBy }) ?: "",
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.White, CircleShape)
+        ) { selectedString ->
+            val idx = displayedOrderList.indexOf(selectedString)
+            orderBy = if (idx >= 0) orderList[idx] else "date"
+        }
+        RoutineList(navController, viewModel.uiState)
+    }
+
 }
 
 @Composable
-fun RoutineList(navController: NavHostController, routinesList : List<Routine>?) {
+fun RoutineList(navController: NavHostController,uiState: MainUiState){
+
+    val routinesList = uiState.currentUserRoutines
 
     val state = rememberScrollState()
+
 
     Column(
         modifier = Modifier
@@ -61,15 +92,7 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
             .verticalScroll(state),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = stringResource(id = R.string.your_routines),
-                textAlign = TextAlign.Center
-            )
-        }
-
-            if (routinesList != null) {
+            if (!routinesList.isNullOrEmpty()) {
                 for (routine in routinesList) {
                     OutlinedCard(
                         colors = CardDefaults.cardColors(
@@ -88,12 +111,25 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                                         modifier = Modifier
                                             .padding(16.dp),
                                         textAlign = TextAlign.Center,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 20.sp
                                     )
 
-                                    Text(
-                                        text = routine.score.toString(),
-                                        modifier = Modifier.padding(5.dp), textAlign = TextAlign.Center
-                                    )
+                                    Row(
+                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        modifier = Modifier.padding(5.dp)
+                                    ) {
+                                        Text(
+                                            text = if (routine.score == null || routine.score == 0f) " - " else routine.score.toString(),
+                                            modifier = Modifier.padding(horizontal = 5.dp)
+                                        )
+
+                                        Icon(
+                                            imageVector = Icons.Filled.Star,
+                                            contentDescription = "routineScore",
+                                        )
+                                    }
                                 }
                             }
                             Spacer(Modifier.weight(1f))
@@ -103,13 +139,6 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                                         Icons.Outlined.PlayArrow,
                                         contentDescription = "Play Routine",
                                         Modifier.fillMaxSize()
-                                    )
-                                }
-
-                                IconButton(onClick = { /*Favoritear*/ }) {
-                                    Icon(
-                                        Icons.Outlined.Star,
-                                        contentDescription = "favourite",
                                     )
                                 }
                             }
@@ -130,3 +159,7 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
 
         }
     }
+
+fun Text(text: String, modifier: Modifier, textAlign: TextAlign, tex: Any) {
+
+}

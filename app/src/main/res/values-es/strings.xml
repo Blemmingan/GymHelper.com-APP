@@ -42,4 +42,27 @@
     <string name="empty_cycle_list">Lista de Ciclos Vacía</string>
     <string name="cycle">Ciclo</string>
     <string name="error">ERROR</string>
+
+
+    <string name="orderByDate">Fecha</string>
+    <string name="orderByScore">Puntaje</string>
+    <string name="orderByDifficulty">Dificultad</string>
+    <string name="orderByCategory">Categoría</string>
+    <string name="orderBy">Ordernar</string>
+    <string name="routineName">Rutina</string>
+    <string name="authorName">Autor</string>
+    <string name="searchRoutine">Buscar</string>
+    <string name="categoryName">Categoría</string>
+
+    <string name="difficulty">Dificultad</string>
+    <string name="any">Todas</string>
+    <string name="rookie">Novato</string>
+    <string name="begginner">Principiante</string>
+    <string name="intermediate">Intermedio</string>
+    <string name="advanced">Avanzado</string>
+    <string name="expert">Experto</string>
+
+    <string name="share">Compartir</string>
+
+    <string name="noCycles">Esta rutina no tiene ciclos</string>
 </resources>

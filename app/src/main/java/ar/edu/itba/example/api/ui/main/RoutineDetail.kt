@@ -12,22 +12,31 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -55,9 +64,6 @@ fun RoutineScreen(
             Text(stringResource(id = R.string.routine_fail))
         } else if (viewModel.uiState.error == null) {
             viewModel.getCycles(routineId)
-            if(viewModel.uiState.currentRoutineDetails.isEmpty()){
-                Text(stringResource(id = R.string.empty_cycle_list))
-            }
             if (viewModel.uiState.error == null) {
                 RoutineDetail(
                     viewModel = viewModel,
@@ -88,37 +94,85 @@ fun RoutineDetail(
         modifier = Modifier
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
-    ){
-        Box(
-            contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = viewModel.uiState.currentRoutine?.name ?: "",
+            fontSize = 40.sp,
+            textAlign = TextAlign.Center
+        )
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth()
+                .requiredHeight(40.dp)
+        ) {
+            Surface(
+                modifier = Modifier
+                    .padding(end = 5.dp)
+                    .fillMaxHeight(),
+                tonalElevation = 3.dp
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(5.dp)
+                ) {
+                    Text(
+                        text = if (viewModel.uiState.currentRoutine?.score == null || viewModel.uiState.currentRoutine?.score == 0f) " - " else viewModel.uiState.currentRoutine?.score.toString(),
+                        modifier = Modifier.padding(horizontal = 5.dp)
+                    )
+
+                    Icon(
+                        imageVector = Icons.Filled.Star,
+                        contentDescription = "routineScore",
+                    )
+                }
+            }
+            Surface(
+                modifier = Modifier
+                    .padding(start = 5.dp)
+                    .fillMaxHeight(),
+                tonalElevation = 3.dp,
+            ) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.padding(5.dp)
+                ) {
+                    val difficulty: String? = getDifString(viewModel.uiState.currentRoutine?.difficulty)
+                    Text(
+                        text = difficulty?:"No especificado",
+                        modifier = Modifier.padding(horizontal = 5.dp)
+                    )
+                }
+            }
+        }
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.DarkGray)
+                .padding(bottom = 10.dp)
         ) {
-            Text(
-                text = viewModel.uiState.currentRoutine?.name?:"err",
-                modifier = Modifier.padding(vertical = 18.dp),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-        }
-        Row {
-            IconButton(onClick = {
-                val link =
-                    "http://www.GymHelper.com/routine/${viewModel.uiState.currentRoutine?.id}"
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, link)
-                context.startActivity(Intent.createChooser(intent, "Share Link"))
+
+            /* val favIcon = if (viewModel.uiState.currentIsFavourite){
+                Icons.Filled.Favorite
+            } else {
+                Icons.Outlined.Favorite
             }
-            ) {
+
+            IconButton(onClick = {
+                setFavourite(routineId)
+            }
+            ){
                 Icon(
-                    imageVector = Icons.Filled.Share,
-                    contentDescription = "share",
-                    tint = Color.LightGray
+                    imageVector = favIcon,
+                    contentDescription = "favourite",
                 )
             }
+*/
             IconButton(onClick = {
                 navController.navigate("routine/execution/$routineId")
             }
@@ -128,66 +182,105 @@ fun RoutineDetail(
                     contentDescription = "execute",
                 )
             }
+            IconButton(onClick = {
+                val link =
+                    "http://www.GymHelper.com/routine/${viewModel.uiState.currentRoutine?.id}"
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_TEXT, link)
+                context.startActivity(Intent.createChooser(intent, null))
+            }
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Share,
+                    contentDescription = stringResource(id = R.string.share),
+                )
+            }
+
         }
-        viewModel.uiState.currentRoutineDetails.forEach{cycleWithExercises -> CycleView(cycleWithExercises.cycle!!, cycleWithExercises.exercises!!) }
-        /*if (viewModel.uiState.isFetching){
-            CircularProgressIndicator(
+
+        if (viewModel.uiState.currentRoutine?.detail != null) {
+            Divider(
                 color = MaterialTheme.colorScheme.secondary,
-                modifier = Modifier.padding(top = 10.dp)
+                modifier = Modifier
+                    .padding(vertical = 10.dp)
+                    .fillMaxWidth(0.9f)
             )
-        } else if (viewModel.uiState.currentRoutineDetails.isEmpty()){
-            //no cycles
-            Text("no cycles")
-        }*/ //TODO: ver como hacer que se vaya el indicador de progreso
+            Text(
+                text = viewModel.uiState.currentRoutine?.detail?:"",
+                textAlign = TextAlign.Left,
+                modifier = Modifier.padding(vertical = 10.dp)
+            )
+        }
+
+        Divider(
+            color = MaterialTheme.colorScheme.secondary,
+            modifier = Modifier
+                .padding(vertical = 10.dp)
+                .fillMaxWidth(0.9f)
+        )
+
+        viewModel.uiState.currentRoutineDetails.forEach{cycleWithExercises -> CycleView(cycleWithExercises.cycle!!, cycleWithExercises.exercises!!) }
+        if (viewModel.uiState.currentRoutineDetails.isEmpty()){
+            Text(
+                text = stringResource(id = R.string.noCycles),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(top = 10.dp, bottom = 20.dp)
+            )
+        }
     }
 
 }
 
 @Composable
 fun CycleView(cycle: Cycle, exercises: List<CycleExercise>){
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(50.dp)
-            .background(MaterialTheme.colorScheme.primary)
-    ) {
-        Box(
-            contentAlignment = Alignment.Center,
+    Column() {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .fillMaxHeight()
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(MaterialTheme.colorScheme.primary)
         ) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxHeight()
+            ) {
+                Text(
+                    text = cycle.name!!,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(10.dp)
+                )
+            }
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .widthIn(min = 140.dp)
+                    .background(Color.DarkGray)
+            ) {
+                Text(
+                    text = stringResource(R.string.repetitions, cycle.repetitions!!),
+                    color = Color.White,
+                    modifier = Modifier.padding(10.dp)
+                )
+            }
+        }
+        if (exercises.isEmpty()) {
             Text(
-                text = cycle.name!!,
-                color = Color.Black,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(10.dp)
+                text = stringResource(id = R.string.noExercises),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(top = 10.dp, bottom = 20.dp)
             )
-        }
 
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .fillMaxHeight()
-                .widthIn(min = 140.dp)
-                .background(Color.DarkGray)
-        ) {
-            Text(text = stringResource(R.string.repetitions,cycle.repetitions!!),
-                color = Color.White,
-                modifier = Modifier.padding(10.dp))
-        }
-    }
-    if (exercises.isEmpty()) {
-        Text(
-            text = stringResource(id = R.string.noExercises),
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(top = 10.dp, bottom = 20.dp)
-        )
-
-    } else {
-        for(exercise in exercises){
-            ExerciseView(exercise = exercise)
+        } else {
+            for (exercise in exercises) {
+                ExerciseView(exercise = exercise)
+            }
         }
     }
 
@@ -197,7 +290,6 @@ fun CycleView(cycle: Cycle, exercises: List<CycleExercise>){
 @Composable
 fun ExerciseView(exercise: CycleExercise) {
     Column(
-        verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.Start,
     ) {
         Text(
@@ -216,16 +308,14 @@ fun ExerciseView(exercise: CycleExercise) {
                 )
             }
 
-            if (exercise.repetitions!! > 0) {
-                if (exercise.duration!! > 0) {
-                    Text(
-                        text = " - ",
-                        color = Color.Gray
-                    )
-                }
+            if (exercise.repetitions!! > 0 && exercise.duration!! > 0) {
+                Text(
+                    text = " - ",
+                    color = Color.Gray
+                )
 
                 Text(
-                    text = stringResource(R.string.duration,exercise.repetitions!!),
+                    text = stringResource(R.string.repetitions,exercise.repetitions!!),
                     color = Color.Gray
                 )
             }
@@ -233,5 +323,16 @@ fun ExerciseView(exercise: CycleExercise) {
     }
 }
 
-
+@Composable
+fun getDifString(str: String?): String?{
+    when(str){
+        null -> return null
+        "rookie" -> return stringResource(id = R.string.rookie)
+        "beginner" -> return stringResource(id = R.string.begginner)
+        "intermediate" -> return stringResource(id = R.string.intermediate)
+        "advanced" -> return stringResource(id = R.string.advanced)
+        "expert" -> return stringResource(id = R.string.expert)
+    }
+    return null
+}
 

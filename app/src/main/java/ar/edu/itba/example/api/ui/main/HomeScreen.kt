@@ -49,32 +49,38 @@ fun HomeScreen(navController: NavHostController,
                viewModel: MainViewModel = viewModel(factory = getViewModelFactory())
 ){
 
-    var orderBy by remember { mutableStateOf("date") }
-    viewModel.getRoutines(orderBy = orderBy)
+    if(!viewModel.uiState.isAuthenticated){
+        navController.navigate("login")
+    } else {
+
+        var orderBy by remember { mutableStateOf("date") }
+        viewModel.getRoutines(orderBy = orderBy)
 
 
-    Column {
-        val displayedOrderList = listOf(
-            stringResource(id = R.string.orderByDate),
-            stringResource(id = R.string.orderByScore),
-            stringResource(id = R.string.orderByDifficulty),
-            stringResource(id = R.string.orderByCategory),
-            stringResource(id = R.string.orderByName)
-        )
-        val orderList = listOf("date", "score", "difficulty", "category", "name")
+        Column {
+            val displayedOrderList = listOf(
+                stringResource(id = R.string.orderByDate),
+                stringResource(id = R.string.orderByScore),
+                stringResource(id = R.string.orderByDifficulty),
+                stringResource(id = R.string.orderByCategory),
+                stringResource(id = R.string.orderByName)
+            )
+            val orderList = listOf("date", "score", "difficulty", "category", "name")
 
-        MyDropDownMenu(
-            label = stringResource(id = R.string.orderBy),
-            elements = displayedOrderList,
-            selectedText = displayedOrderList.elementAtOrNull(orderList.indexOfFirst { it == orderBy }) ?: "",
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White, CircleShape)
-        ) { selectedString ->
-            val idx = displayedOrderList.indexOf(selectedString)
-            orderBy = if (idx >= 0) orderList[idx] else "name"
+            MyDropDownMenu(
+                label = stringResource(id = R.string.orderBy),
+                elements = displayedOrderList,
+                selectedText = displayedOrderList.elementAtOrNull(orderList.indexOfFirst { it == orderBy })
+                    ?: "",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White, CircleShape)
+            ) { selectedString ->
+                val idx = displayedOrderList.indexOf(selectedString)
+                orderBy = if (idx >= 0) orderList[idx] else "name"
+            }
+            RoutineList(navController, viewModel.uiState)
         }
-        RoutineList(navController, viewModel.uiState)
     }
 
 }

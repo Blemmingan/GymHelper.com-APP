@@ -25,6 +25,7 @@ import ar.edu.itba.example.api.ui.main.LoginScreen
 import ar.edu.itba.example.api.ui.main.MyBottomBar
 import ar.edu.itba.example.api.ui.main.MyTopBar
 import ar.edu.itba.example.api.ui.main.RoutineScreen
+import ar.edu.itba.example.api.ui.main.SettingsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,6 +45,10 @@ fun MyNavHost(
     var showBackButton by rememberSaveable {
         mutableStateOf(false)
     }
+    var showSettingsButton by rememberSaveable {
+        mutableStateOf(true)
+    }
+
     var showTopBar by rememberSaveable { mutableStateOf(true) }
     var showBottomBar by rememberSaveable { mutableStateOf(true) }
 
@@ -53,6 +58,7 @@ fun MyNavHost(
             showBackButton = showBackButton,
             onGoBack = {navController.navigateUp()},
             onGoSettings = {navController.navigate("settings")},
+            showSettingsButton = showSettingsButton
         )}},
         bottomBar = { if (showBottomBar) {MyBottomBar(
             currentRoute = currentRoute,
@@ -69,6 +75,7 @@ fun MyNavHost(
                 title = stringResource(id = R.string.login)
                 showTopBar= false
                 showBottomBar = false
+                showSettingsButton = false
                 currentRoute = "login"
                 LoginScreen(navController)
             }
@@ -77,6 +84,7 @@ fun MyNavHost(
                 showTopBar = true
                 showBottomBar = true
                 showBackButton = false
+                showSettingsButton = true
                 currentRoute = "home"
                 HomeScreen(navController = navController)
             }
@@ -90,6 +98,7 @@ fun MyNavHost(
                         showTopBar = true
                         showBottomBar = false
                         showBackButton = true
+                        showSettingsButton = true
                         currentRoute = "routine"
                         RoutineScreen(
                         routineId = route.arguments?.getInt("id")!!,
@@ -105,7 +114,8 @@ fun MyNavHost(
                     showTopBar = false
                     showBottomBar = false
                     showBackButton = true
-                currentRoute = "routine/execution"
+                    showSettingsButton = false
+                    currentRoute = "routine/execution"
                         ExecuteRoutineScreen(
                             routineId = route.arguments?.getInt("id")!!,
                             navController = navController
@@ -120,7 +130,20 @@ fun MyNavHost(
                 showTopBar = true
                 showBottomBar = true
                 showBackButton = false
+                showSettingsButton = true
                 FavourtiteRoutines(navController = navController)
+            }
+
+            composable(
+                "settings"
+            ) {
+                title = stringResource(id = R.string.settings)
+                currentRoute = "settings"
+                showTopBar = true
+                showBottomBar = false
+                showBackButton = true
+                showSettingsButton = false
+                SettingsScreen(navController = navController)
             }
         }
     }

@@ -23,7 +23,8 @@ fun MyTopBar(
     title: String? = null,
     onGoBack: () -> Unit,
     onGoSettings: () -> Unit,
-    showBackButton: Boolean = true
+    showBackButton: Boolean = true,
+    showSettingsButton: Boolean = true,
 ) {
     CenterAlignedTopAppBar(
         title = {if (title!=null) Text(title) },
@@ -34,10 +35,11 @@ fun MyTopBar(
             }
         }
         },
-        actions = {
-            IconButton(onClick = onGoSettings){
+        actions = {if (showSettingsButton) {
+            IconButton(onClick = onGoSettings) {
                 Icon(Icons.Filled.Settings, stringResource(id = R.string.settings))
             }
+        }
         },
         colors = TopAppBarDefaults.smallTopAppBarColors(titleContentColor = Color.White, containerColor =  MaterialTheme.colorScheme.primary)
 

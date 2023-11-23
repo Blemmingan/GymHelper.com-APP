@@ -82,12 +82,24 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
                             routine.name?.let {
-                                Text(
-                                    text = it,
-                                    modifier = Modifier
-                                        .padding(16.dp),
-                                    textAlign = TextAlign.Center,
-                                )
+                                Column {
+                                    Text(
+                                        text = it,
+                                        modifier = Modifier
+                                            .padding(16.dp),
+                                        textAlign = TextAlign.Center,
+                                    )
+                                    routine.detail?.let { it1 ->
+                                        Text(
+                                            text = it1,
+                                            modifier = Modifier.padding(16.dp), textAlign = TextAlign.Center
+                                        )
+                                    }
+                                    Text(
+                                        text = routine.score.toString(),
+                                        modifier = Modifier.padding(5.dp), textAlign = TextAlign.Center
+                                    )
+                                }
                             }
                             Spacer(Modifier.weight(1f))
                             Column {

@@ -23,6 +23,7 @@
     <string name="difficulty">Difficulty</string>
     <string name="duration">Duration: %1$d</string>
     <string name="empty_cycle_list">Empty Cycle List</string>
+    <string name="end_routine">End Routine</string>
     <string name="error">ERROR</string>
     <string name="expert">Expert</string>
     <string name="favs">Favourites</string>
@@ -59,6 +60,7 @@
     <string name="searchRoutine">Search</string>
     <string name="settings">Settings</string>
     <string name="share">Share</string>
+    <string name="timer_finished">Exercise Finished!</string>
     <string name="username">Username</string>
     <string name="view_all_exercises">View Next Exercises</string>
     <string name="view_detailed_exercise">View Exercise Detail</string>

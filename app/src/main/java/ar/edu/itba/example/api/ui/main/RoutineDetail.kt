@@ -39,6 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -143,7 +144,7 @@ fun RoutineDetail(
                 ) {
                     val difficulty: String? = getDifString(viewModel.uiState.currentRoutine?.difficulty)
                     Text(
-                        text = difficulty?:"No especificado",
+                        text = difficulty?: stringResource(id = R.string.unspecified),
                         modifier = Modifier.padding(horizontal = 5.dp)
                     )
                 }

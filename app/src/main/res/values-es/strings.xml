@@ -67,4 +67,7 @@
     <string name="noCycles">Esta rutina no tiene ciclos</string>
     <string name="end_routine">Finalizar Rutina</string>
     <string name="timer_finished">¡Ejercicio Completo!</string>
+
+    <string name="unspecified">No especificado</string>
+
 </resources>

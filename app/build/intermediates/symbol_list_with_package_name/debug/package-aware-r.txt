@@ -229,6 +229,7 @@ string difficulty
 string dropdown_menu
 string duration
 string empty_cycle_list
+string end_routine
 string error
 string expanded
 string expert
@@ -279,6 +280,7 @@ string status_bar_notification_info_overflow
 string switch_role
 string tab
 string template_percent
+string timer_finished
 string username
 string view_all_exercises
 string view_detailed_exercise

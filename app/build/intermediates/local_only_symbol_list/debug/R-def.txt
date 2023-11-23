@@ -29,6 +29,7 @@ string delete_sport
 string difficulty
 string duration
 string empty_cycle_list
+string end_routine
 string error
 string expert
 string favs
@@ -65,6 +66,7 @@ string search
 string searchRoutine
 string settings
 string share
+string timer_finished
 string username
 string view_all_exercises
 string view_detailed_exercise

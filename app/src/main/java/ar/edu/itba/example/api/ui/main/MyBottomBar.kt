@@ -21,7 +21,7 @@ fun MyBottomBar(
 ) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = Color.Black
+        contentColor = Color.White
     ) {
         NavigationBarItem (
             icon = {Icon(Icons.Filled.Home, contentDescription = stringResource(id = R.string.home))},

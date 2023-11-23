@@ -42,6 +42,6 @@ interface ApiRoutineService {
     @POST("favourites/{routineId}")
     suspend fun addFavourite(@Path("routineId") routineId: Int): Response<Unit>
 
-    @DELETE("fovourites/{routineId}")
+    @DELETE("favourites/{routineId}")
     suspend fun deleteFavourite(@Path("routineId") routineId: Int): Response<Unit>
 }

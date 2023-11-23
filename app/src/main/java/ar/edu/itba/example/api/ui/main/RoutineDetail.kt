@@ -2,6 +2,7 @@ package ar.edu.itba.example.api.ui.main
 
 import android.content.Context
 import android.content.Intent
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +31,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -157,6 +162,22 @@ fun RoutineDetail(
                 .fillMaxWidth()
                 .padding(bottom = 10.dp)
         ) {
+
+            var isFav by remember{mutableStateOf(viewModel.uiState.currentIsFavourite)}
+            IconButton(onClick = {
+                if (isFav){
+                    viewModel.removeFavourite(routineId)
+                } else {
+                    viewModel.addFavourite(routineId)
+                }
+                isFav = !isFav
+            }) {
+                Icon(
+                    imageVector = Icons.Filled.Favorite,
+                    contentDescription = "favorite",
+                    tint = if (isFav) Color.Red else Color.Black
+                )
+            }
 
             IconButton(onClick = {
                 navController.navigate("routine/execution/$routineId")

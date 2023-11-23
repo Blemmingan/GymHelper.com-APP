@@ -50,6 +50,7 @@
     <string name="orderByCategory">Category</string>
     <string name="orderByDate">Date</string>
     <string name="orderByDifficulty">Difficulty</string>
+    <string name="orderByName">Name</string>
     <string name="orderByScore">Score</string>
     <string name="password">Password</string>
     <string name="redirecting">Redirecting…</string>

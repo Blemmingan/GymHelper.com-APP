@@ -89,7 +89,7 @@ class MainViewModel(
         size: Int = 50,
         orderBy: String = "date"
     ) = runOnViewModelScope(
-        {routineRepository.getRoutines(false, page, size, orderBy)},
+        {routineRepository.getRoutines(true, page, size, orderBy)},
         {state, response -> state.copy(currentUserRoutines = response)}
     )
 

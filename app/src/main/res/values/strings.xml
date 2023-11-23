@@ -70,4 +70,5 @@
     <string name="unspecified">Unspecified</string>
     <string name="routine">Routine</string>
     <string name="execution">Routine Execution\n</string>
+    <string name="orderByName">Name</string>
 </resources>

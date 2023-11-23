@@ -58,9 +58,10 @@ fun HomeScreen(navController: NavHostController,
             stringResource(id = R.string.orderByDate),
             stringResource(id = R.string.orderByScore),
             stringResource(id = R.string.orderByDifficulty),
-            stringResource(id = R.string.orderByCategory)
+            stringResource(id = R.string.orderByCategory),
+            stringResource(id = R.string.orderByName)
         )
-        val orderList = listOf("date", "score", "difficulty", "category")
+        val orderList = listOf("date", "score", "difficulty", "category", "name")
 
         MyDropDownMenu(
             label = stringResource(id = R.string.orderBy),
@@ -71,7 +72,7 @@ fun HomeScreen(navController: NavHostController,
                 .background(Color.White, CircleShape)
         ) { selectedString ->
             val idx = displayedOrderList.indexOf(selectedString)
-            orderBy = if (idx >= 0) orderList[idx] else "date"
+            orderBy = if (idx >= 0) orderList[idx] else "name"
         }
         RoutineList(navController, viewModel.uiState)
     }

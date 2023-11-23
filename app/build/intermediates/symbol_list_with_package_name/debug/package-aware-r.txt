@@ -263,6 +263,7 @@ string orderBy
 string orderByCategory
 string orderByDate
 string orderByDifficulty
+string orderByName
 string orderByScore
 string password
 string range_end

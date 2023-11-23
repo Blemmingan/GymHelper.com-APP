@@ -73,4 +73,5 @@
     <string name="routine">Rutina</string>
     <string name="execution">Ejecución de Rutina</string>
 
+    <string name="orderByName">Nombre</string>
 </resources>

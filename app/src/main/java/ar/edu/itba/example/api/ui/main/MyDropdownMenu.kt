@@ -41,30 +41,27 @@ fun MyDropDownMenu(
     padding: PaddingValues = PaddingValues(10.dp),
     onValueChanged: (String) -> Unit = {}
 ) {
-    var alan by remember { mutableStateOf(false) }
-    val kevin = elements
+    var open by remember { mutableStateOf(false) }
 
-    var ángeles by remember { mutableStateOf(Size.Zero) }
+    var size by remember { mutableStateOf(Size.Zero) }
 
-    val oscar = if (alan) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown
+    val icon = if (open) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown
 
     Box(
         Modifier.padding(paddingValues = padding),
-        //horizontalAlignment = Alignment.CenterHorizontally,
-        //verticalArrangement = Arrangement.spacedBy(16.dp, alignment = Alignment.Top),
     ) {
         OutlinedTextField(
             value = selectedText,
             onValueChange = { onValueChanged(it) },
             modifier = modifier
                 .onGloballyPositioned { coordinates ->
-                    ángeles = coordinates.size.toSize()
+                    size = coordinates.size.toSize()
                 },
             label = { Text(text = label, color = Color.Black) },
             placeholder = { Text(text = label, color = Color.Black) },
             singleLine = true,
             trailingIcon = {
-                if (enabled) Icon(oscar, null, Modifier.clickable { alan = !alan })
+                if (enabled) Icon(icon, null, Modifier.clickable { open = !open })
             },
             shape = RoundedCornerShape(50),
             textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
@@ -72,14 +69,14 @@ fun MyDropDownMenu(
             enabled = enabled
         )
         DropdownMenu(
-            expanded = alan,
-            onDismissRequest = { alan = false },
+            expanded = open,
+            onDismissRequest = { open = false },
             modifier = Modifier
-                .width(with(LocalDensity.current) { ángeles.width.toDp() })
+                .width(with(LocalDensity.current) { size.width.toDp() })
         ) {
-            kevin.forEach { label ->
+            elements.forEach { label ->
                 DropdownMenuItem(onClick = {
-                    alan = false
+                    open = false
                     onValueChanged(label)},
                     text = {Text(label)}
                 )

@@ -67,6 +67,7 @@ string searchRoutine
 string settings
 string share
 string timer_finished
+string unspecified
 string username
 string view_all_exercises
 string view_detailed_exercise

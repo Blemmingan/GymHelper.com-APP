@@ -59,16 +59,16 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
         modifier = Modifier
             .fillMaxWidth()
             .verticalScroll(state),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
             Text(
                 modifier = Modifier.padding(8.dp),
                 text = stringResource(id = R.string.your_routines),
                 textAlign = TextAlign.Center
             )
         }
-        
+
             if (routinesList != null) {
                 for (routine in routinesList) {
                     OutlinedCard(
@@ -89,12 +89,7 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                                             .padding(16.dp),
                                         textAlign = TextAlign.Center,
                                     )
-                                    routine.detail?.let { it1 ->
-                                        Text(
-                                            text = it1,
-                                            modifier = Modifier.padding(16.dp), textAlign = TextAlign.Center
-                                        )
-                                    }
+
                                     Text(
                                         text = routine.score.toString(),
                                         modifier = Modifier.padding(5.dp), textAlign = TextAlign.Center
@@ -131,7 +126,7 @@ fun RoutineList(navController: NavHostController, routinesList : List<Routine>?)
                         fontStyle = FontStyle.Italic
                     )
                 }
-
             }
+
         }
     }

@@ -61,6 +61,7 @@
     <string name="settings">Settings</string>
     <string name="share">Share</string>
     <string name="timer_finished">Exercise Finished!</string>
+    <string name="unspecified">Unspecified</string>
     <string name="username">Username</string>
     <string name="view_all_exercises">View Next Exercises</string>
     <string name="view_detailed_exercise">View Exercise Detail</string>
